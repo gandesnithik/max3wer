@@ -1,0 +1,1164 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Lumora</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFDF8;--card:#fff;--ink:#393641;--mut:#6b5876;--line:#E9DFD3;--t1:#F6DDE7;--t2:#E8E0FA;--t3:#DDEBDD;--pl:#75617E;--onpl:#fff;--ac:#D99BB6;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[data-theme=blue]{--bg:#F4F9FE;--card:#fff;--ink:#1d2b3a;--mut:#4f6479;--line:#d5e3f1;--t1:#DCECF8;--t2:#E3E8FB;--t3:#D9F0F0;--pl:#2E6FB5;--onpl:#fff;--ac:#5AA0E0}
+[data-theme=green]{--bg:#F5FBF6;--card:#fff;--ink:#1f3326;--mut:#4f6b58;--line:#d6e8d9;--t1:#DDEBDD;--t2:#E6F2D5;--t3:#D5EEE8;--pl:#2F7D4F;--onpl:#fff;--ac:#5DB57F}
+[data-theme=light]{--bg:#fff;--card:#fff;--ink:#111;--mut:#5a5a5a;--line:#e4e4e4;--t1:#f3f3f3;--t2:#ececec;--t3:#f7f7f7;--pl:#111;--onpl:#fff;--ac:#777}
+[data-theme=dark]{--bg:#1b1b22;--card:#26262f;--ink:#f1f1f5;--mut:#b5b5c5;--line:#3a3a47;--t1:#35303f;--t2:#2d3345;--t3:#2b3a33;--pl:#b9a7ff;--onpl:#1b1b22;--ac:#b9a7ff;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Manrope,system-ui,sans-serif;transition:background .3s,color .3s}
+h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;margin:0}h1{font-size:30px}h2{font-size:21px;margin-bottom:8px}
+.sh{display:grid;grid-template-columns:190px 1fr;min-height:100vh}
+nav{padding:18px 12px;border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow:auto}
+.logo{font-family:'DM Serif Display',Georgia,serif;font-size:22px;padding:4px 12px 12px;cursor:pointer;background:none;border:0;color:var(--ink)}
+nav a{display:block;padding:9px 12px;border-radius:999px;color:var(--ink);text-decoration:none;font-weight:600;cursor:pointer}
+nav a.on{background:var(--t2)}nav a:hover{background:var(--t1)}
+main{padding:18px clamp(14px,3vw,34px);max-width:1000px;width:100%}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:6px 0 16px;flex-wrap:wrap}
+.top{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}.top select,.tb select{width:auto;padding:6px 12px;border-radius:999px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;margin-bottom:14px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}.g .card{margin:0}
+.st b{font-family:'DM Serif Display',Georgia,serif;font-size:28px;font-weight:400;display:block}.st{background:var(--c,var(--t1))}
+.btn,.ic,.pill{font:inherit;font-weight:600;cursor:pointer;border-radius:999px;border:1px solid transparent}
+.btn{background:var(--pl);color:var(--onpl);padding:9px 18px}.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.ic{background:transparent;color:var(--mut);border-color:var(--line);padding:4px 12px;font-size:13px}.pill{padding:3px 12px;font-size:12px;color:var(--ink);border-color:var(--line);background:transparent}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.it{display:flex;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}.it>div{flex:1;min-width:150px}.it small{display:block;color:var(--mut)}.dn b{text-decoration:line-through;opacity:.6}
+.mut{color:var(--mut)}.bar{height:9px;border-radius:9px;background:var(--t2);overflow:hidden;margin:6px 0}.bar i{display:block;height:100%;background:var(--ac);border-radius:9px;transition:width .5s}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:9px 12px;width:100%}
+label{display:block;margin-bottom:10px;font-weight:600;font-size:13px}label input,label select{margin-top:4px;font-weight:400}
+dialog{border:1px solid var(--line);border-radius:24px;background:var(--card);color:var(--ink);width:min(420px,92vw);padding:22px}dialog::backdrop{background:rgba(0,0,0,.45)}
+.row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}.err{color:#c0415f;margin:0 0 8px;min-height:1em}
+.emp{text-align:center;background:var(--t3)}.flt{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}.flt>*{flex:1;min-width:120px}
+.gd{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));font-size:30px;text-align:center;gap:4px;margin-bottom:10px}
+.ring{display:block;margin:10px auto}.ring circle{fill:none;stroke-width:14}
+.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px}
+.hero{position:relative;overflow:hidden;min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px;background:radial-gradient(circle at 15% 10%,var(--t1),transparent 45%),radial-gradient(circle at 85% 85%,var(--t2),transparent 45%),var(--bg)}
+.tb{position:absolute;top:16px;right:16px;z-index:2;display:flex;gap:8px;align-items:center}
+.hin{position:relative;z-index:1;max-width:760px}.lg2{font-family:'DM Serif Display',Georgia,serif;font-size:22px}
+.hl{font-size:clamp(40px,10vw,92px);line-height:1.05;margin:10px 0 18px}.hl>span:first-child{color:var(--pl)}
+.rw{display:inline-block;font-style:italic;transition:opacity .3s,transform .3s}.rw.out{opacity:0;transform:translateY(14px)}
+.sub{font-size:18px;color:var(--mut);margin:0 auto 24px}.lgb{font-size:17px;padding:13px 32px}
+.orb{position:absolute;border-radius:50%;filter:blur(50px);opacity:.55;animation:fl 9s ease-in-out infinite alternate}
+.o1{width:280px;height:280px;background:var(--t1);top:8%;left:6%}.o2{width:340px;height:340px;background:var(--t2);bottom:6%;right:8%;animation-delay:-3s}
+@keyframes fl{to{transform:translate(30px,-24px) scale(1.12)}}
+@media(max-width:800px){.sh{display:block}nav{position:fixed;bottom:0;left:0;right:0;top:auto;height:auto;display:flex;overflow-x:auto;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));background:var(--card);border:0;border-top:1px solid var(--line);z-index:5}.logo{display:none}nav a{white-space:nowrap}main{padding-bottom:90px}}
+textarea{resize:vertical}.msg{padding:10px 14px;border-radius:18px;margin:8px 0;max-width:88%;overflow-wrap:anywhere}.msg.me{background:var(--t2);margin-left:auto}.msg.ai{background:var(--t1)}#chat{max-height:50vh;overflow:auto}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.orb{animation:none}}
+.comp{display:flex;gap:8px;align-items:flex-end;margin-top:12px}.comp textarea{flex:1;min-width:0}.comp .ic{padding:9px 13px;font-size:17px}
+.qq{margin:12px 0}.qo{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 12px;margin:6px 0;cursor:pointer}.qo:disabled{cursor:default;color:var(--ink)}.qo.ok{background:var(--t3);border-color:#3F9A62}.qo.no{background:var(--t1);border-color:#c0415f}
+.msg details{margin:6px 0;border:1px solid var(--line);border-radius:14px;padding:8px 12px;background:var(--card)}.msg summary{cursor:pointer;font-weight:600}
+</style><script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script><script defer src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script><div id="app"></div><dialog id="dlg"></dialog>
+<style>
+/* Lumora admin: a calm, data-first view that reuses the app's plum, rose and sage. Open the page with #admin. */
+#adm{--a-bg:#FAF7F3;--a-surface:#FFFFFF;--a-ink:#2D2833;--a-mut:#6A6174;--a-line:#E6DED6;--a-plum:#75617E;--a-sage:#2F7D4F;--a-rose:#C0415F;--a-wash:#F3ECF6;--a-bar:#E7DDEC;--a-grid:#EEE7E0;
+  font:14px/1.5 Manrope,system-ui,sans-serif;color:var(--a-ink);background:var(--a-bg);min-height:100vh;
+  padding-block:20px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+html[data-theme=dark] #adm{--a-bg:#1B1B22;--a-surface:#26262F;--a-ink:#F1F1F5;--a-mut:#B5B5C5;--a-line:#3A3A47;--a-plum:#B9A7FF;--a-sage:#7FD1A0;--a-rose:#F08AA6;--a-wash:#2D2D3A;--a-bar:#3B3B4D;--a-grid:#32323F}
+#adm *{box-sizing:border-box}
+#adm .a-wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+#adm h1,#adm h2{font-family:'DM Serif Display',Georgia,serif;font-weight:400;margin:0}
+#adm h1{font-size:30px;line-height:1.1}
+#adm h2{font-size:20px}
+#adm p{margin:0}
+#adm .a-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px 20px;flex-wrap:wrap}
+#adm .a-brand{display:flex;flex-direction:column;gap:4px;min-width:0}
+#adm .a-kick{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--a-mut)}
+#adm .a-status{display:inline-flex;align-items:center;gap:7px;color:var(--a-mut);font-size:13px}
+#adm .a-dot{width:9px;height:9px;border-radius:50%;background:var(--a-mut)}
+#adm .a-dot.live{background:var(--a-sage)}
+#adm .a-dot.warn{background:var(--a-rose)}
+#adm .a-ctl{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#adm .seg{display:inline-flex;border:1px solid var(--a-line);border-radius:999px;padding:3px;background:var(--a-surface)}
+#adm .seg button{font:inherit;font-weight:600;font-size:13px;color:var(--a-mut);background:transparent;border:0;border-radius:999px;padding:5px 14px;cursor:pointer}
+#adm .seg button[aria-pressed=true]{background:var(--a-plum);color:var(--a-surface)}
+#adm .ghost{font:inherit;font-weight:600;font-size:13px;color:var(--a-ink);background:transparent;border:1px solid var(--a-line);border-radius:999px;padding:7px 16px;cursor:pointer}
+#adm button:focus-visible{outline:3px solid var(--a-plum);outline-offset:2px}
+#adm .banner{background:var(--a-wash);border:1px dashed var(--a-plum);border-radius:14px;padding:10px 14px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+#adm .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));background:var(--a-surface);border:1px solid var(--a-line);border-radius:18px;overflow:hidden}
+#adm .kpi{padding:16px 18px;display:flex;flex-direction:column;gap:3px;min-width:0;border-right:1px solid var(--a-line);border-bottom:1px solid var(--a-line);margin:0 -1px -1px 0}
+#adm .kpi b{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:34px;line-height:1.1;font-variant-numeric:tabular-nums}
+#adm .dl{font-size:12px;color:var(--a-mut)}
+#adm .dl.good{color:var(--a-sage)}
+#adm .dl.bad{color:var(--a-rose)}
+#adm .panel{background:var(--a-surface);border:1px solid var(--a-line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+#adm .head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+#adm .key{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--a-mut)}
+#adm .key i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+#adm .ro{font-size:13px;color:var(--a-mut);min-height:1.5em;font-variant-numeric:tabular-nums}
+#adm .ro b{color:var(--a-ink)}
+#adm svg.ch{width:100%;height:auto;display:block;touch-action:pan-y}
+#adm .ch text{font:11px Manrope,system-ui,sans-serif;fill:var(--a-mut)}
+#adm .ch .gr{stroke:var(--a-grid);stroke-width:1}
+#adm .ch .gl{stroke:var(--a-mut);stroke-width:1;stroke-dasharray:3 3}
+#adm .ch .ar{fill:var(--a-plum);opacity:.14}
+#adm .ch .lv{fill:none;stroke:var(--a-plum);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+#adm .ch .ll{fill:none;stroke:var(--a-sage);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+#adm .ch .ev{fill:var(--a-plum);stroke:var(--a-surface);stroke-width:2}
+#adm .ch .el{fill:var(--a-sage);stroke:var(--a-surface);stroke-width:2}
+#adm .trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+#adm .big{font-family:'DM Serif Display',Georgia,serif;font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+#adm .split{display:flex;height:10px;border-radius:99px;overflow:hidden;background:var(--a-bar)}
+#adm .split i{display:block;height:100%}
+#adm .lgd{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--a-mut)}
+#adm .lgd b{color:var(--a-ink);font-variant-numeric:tabular-nums}
+#adm .hb{display:grid;grid-template-columns:minmax(70px,auto) 1fr auto;gap:10px;align-items:center;font-size:13px}
+#adm .hb .tr{height:8px;border-radius:99px;background:var(--a-bar);overflow:hidden}
+#adm .hb .tr i{display:block;height:100%;background:var(--a-plum);border-radius:99px}
+#adm .hb b{font-variant-numeric:tabular-nums}
+#adm .tw{overflow-x:auto}
+#adm table{width:100%;border-collapse:collapse;font-size:13px;min-width:460px}
+#adm th{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--a-mut);text-align:left;padding:6px 10px;border-bottom:1px solid var(--a-line);white-space:nowrap}
+#adm td{padding:9px 10px;border-bottom:1px solid var(--a-line);white-space:nowrap;font-variant-numeric:tabular-nums}
+#adm tr:last-child td{border-bottom:0}
+#adm td.n,#adm th.n{text-align:right}
+#adm .mut{color:var(--a-mut)}
+#adm .tag{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+#adm .tag i{width:8px;height:8px;border-radius:50%}
+#adm .t-visit i{background:var(--a-plum)}
+#adm .t-login i,#adm .t-signup i{background:var(--a-sage)}
+#adm .t-fail i{background:var(--a-rose)}
+#adm .t-fail{color:var(--a-rose)}
+#adm .empty{text-align:center;padding:26px 12px;display:flex;flex-direction:column;gap:10px;align-items:center}
+#adm .empty p{max-width:52ch;color:var(--a-mut)}
+#adm .note{background:var(--a-surface);border:1px solid var(--a-line);border-radius:18px;padding:28px 22px;display:flex;flex-direction:column;gap:8px;max-width:560px}
+#adm .note p{color:var(--a-mut)}
+@media (max-width:520px){#adm h1{font-size:26px}#adm .kpi b{font-size:30px}}
+@media (prefers-reduced-motion:reduce){#adm *{transition:none!important;animation:none!important}}
+</style>
+<section id="adm" hidden aria-label="Lumora admin"></section>
+<script>
+const $=s=>document.querySelector(s),pad=n=>String(n).padStart(2,'0');
+const fmt=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()),T=()=>fmt(new Date());
+const add=(s,n)=>{const d=new Date(s+'T12:00:00');d.setDate(d.getDate()+n);return fmt(d)};
+const dif=(a,b)=>Math.round((new Date(a+'T12:00:00')-new Date(b+'T12:00:00'))/864e5);
+const hm=m=>pad(Math.floor(m/60))+':'+pad(m%60),hs=s=>pad(Math.floor(s/60))+':'+pad(s%60),mn=s=>{const[a,b]=s.split(':');return+a*60+ +b};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9),dl=s=>new Date(s+'T12:00:00').toLocaleDateString(LG=='de'?'de-CH':'en-GB',{weekday:'short',month:'short',day:'numeric'});
+const MEM={},ls=(k,v)=>{let r=null;try{if(v===undefined){r=localStorage.getItem(k)}else{v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}}catch(e){}if(v===undefined)return r!==null?r:(Object.prototype.hasOwnProperty.call(MEM,k)?MEM[k]:null);if(v===null)delete MEM[k];else MEM[k]=String(v);try{window.__lmSync&&window.__lmSync(k,v)}catch(e){}return null};
+let LG=ls('lm_lg');if(LG!='de'&&LG!='en')LG='en';
+const TH=[['rose','Rose'],['blue','Blue'],['green','Green'],['light','Light'],['dark','Dark']];
+let TM=ls('lm_th');if(!TH.some(t=>t[0]==TM))TM=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'rose';
+const D0=()=>({name:'',sub:[],task:[],ses:[],exam:[],foc:[],gr:[],pr:{rnd:'half',mw:2}});
+let U=ls('lm_u')||'',V=U?'app':'land',R='today',ri=0;
+const load=()=>{let d;try{d=JSON.parse(ls('lm_d_'+(U||'guest')))}catch(e){}return Object.assign(D0(),d||{})};
+let S=load();const save=()=>ls('lm_d_'+(U||'guest'),JSON.stringify(S));
+const hh=async s=>{try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('lm'+s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return btoa(unescape(encodeURIComponent('lm'+s)))}};
+const RW=[['Homework','#7B61D9'],['Exams','#D9608F'],['Tasks','#D68A00'],['Deadlines','#2E8FD6'],['Projects','#3F9A62']],CO=['#D9608F','#7B61D9','#D68A00','#2E8FD6','#3F9A62','#E0703C'];
+const by=(a,id)=>S[a].find(x=>x.id==id),sub=id=>by('sub',id),sn=id=>sub(id)?.name||'General';
+const so=()=>[['','General'],...S.sub.map(s=>[s.id,s.name])];
+// everything below is derived from S.foc (study minutes)
+const md=()=>{const m={};S.foc.forEach(f=>m[f.d]=(m[f.d]||0)+f.m);return m};
+const mins=()=>S.foc.reduce((a,f)=>a+f.m,0),fh=m=>m>=60?Math.floor(m/60)+' h '+m%60+' min':m+' min';
+const streak=()=>{const m=md();let d=T(),n=0;if(!m[d])d=add(d,-1);while(m[d]){n++;d=add(d,-1)}return n};
+const hrs=()=>Math.floor(mins()/60),vis=()=>(S.vis||[]).length,STG=['Seed','Sprout','Seedling','Young plant','Bush','Blooming plant','Flowering tree','Giant tree'],stage=h=>h<1?0:h<2?1:h<4?2:h<8?3:h<15?4:h<30?5:h<60?6:7;
+const plant=w=>{const h=hrs(),k=Math.min(h,60),lv=Math.min(40,h*2+vis()),ht=Math.min(30+h*7,160),cx=130,b=225;let s=`<svg viewBox="0 0 260 260" width="100%" style="max-width:${w}px;display:block;margin:auto" role="img" aria-label="Your plant"><ellipse cx="${cx}" cy="${b+3}" rx="${40+k}" ry="9" fill="var(--t1)"/><path d="M${cx} ${b} L${cx} ${b-ht}" stroke="#3F9A62" stroke-width="${3+k*.15}" stroke-linecap="round"/>`;
+for(let i=0;i<lv;i++){const y=b-(i+1)/(lv+1)*ht*.95,d=i%2?1:-1,r=7+k*.5;s+=`<ellipse cx="${cx+d*r}" cy="${y}" rx="${r}" ry="${r*.45}" fill="${i%2?'#4CAF6F':'#3F9A62'}" transform="rotate(${d*-25} ${cx+d*r} ${y})"/>`}
+if(h>=4){const pr=6+k*.35;for(let i=0;i<6;i++){const a=i*Math.PI/3;s+=`<circle cx="${cx+Math.cos(a)*pr*1.3}" cy="${b-ht+Math.sin(a)*pr*1.3}" r="${pr}" fill="#E76F9C"/>`}s+=`<circle cx="${cx}" cy="${b-ht}" r="${pr*.8}" fill="#F5C542"/>`}
+return s+'</svg>'};
+const clash=(date,st,len,ex)=>S.ses.some(s=>s.id!=ex&&s.date==date&&st<s.start+s.len&&s.start<st+len);
+const pill=(t,c)=>`<span class="pill" style="background:var(--${c||'t2'})">${esc(t)}</span>`,bar=p=>`<div class="bar"><i style="width:${Math.min(100,Math.round(p))}%"></i></div>`;
+const emp=(t,b)=>`<div class="card emp"><div style="font-size:34px">🌱</div><p>${t}</p>${b||''}</div>`,hd=(t,b)=>`<div class="hd"><h1>${t}</h1><div class="row">${b||''}</div></div>`;
+const bt=(a,t,i,j)=>`<button class="btn" data-a="${a}" data-i="${i??''}" data-j="${j??''}">${t}</button>`,ib=(a,t,i,j)=>`<button class="ic" data-a="${a}" data-i="${i??''}" data-j="${j??''}">${t}</button>`;
+const thSel=()=>`<select id="lg" aria-label="Language"><option value="en"${LG=='en'?' selected':''}>🌐 English</option><option value="de"${LG=='de'?' selected':''}>🌐 Deutsch</option></select><select id="th" aria-label="Theme">${TH.map(([a,b])=>`<option value="${a}"${a==TM?' selected':''}>🎨 ${b}</option>`).join('')}</select>`;
+function form(title,fs,v,cb){v=v||{};$('#dlg').innerHTML=`<form id="f"><h3>${title}</h3><br>`+fs.map(([n,l,t,o])=>`<label>${l}`+(t=='select'?`<select name="${n}">${o.map(([a,b])=>`<option value="${esc(a)}"${v[n]==a?' selected':''}>${esc(b)}</option>`).join('')}</select>`:`<input name="${n}" type="${t}"${t=='number'?' step="any"':''} value="${esc(v[n])}">`)+'</label>').join('')+`<p class="err" id="er" role="alert"></p><div class="row"><button type="button" class="btn ghost" data-a="close">Cancel</button><button class="btn">Save</button></div></form>`;$('#dlg').showModal();$('#f').onsubmit=e=>{e.preventDefault();const o=Object.fromEntries(new FormData(e.target)),er=cb(o);if(er){$('#er').textContent=er;return}$('#dlg').close();save();go()}}
+function conf(m,cb){$('#dlg').innerHTML=`<h3>${m}</h3><br><div class="row"><button class="btn ghost" data-a="close">Keep it</button><button class="btn" id="ok">Yes, delete</button></div>`;$('#dlg').showModal();$('#ok').onclick=()=>{cb();$('#dlg').close();save();go()}}
+const up=(arr,id,o)=>{const x=id&&arr.find(a=>a.id==id);x?Object.assign(x,o):arr.push({id:uid(),...o})};
+const NAV=[['today','Today'],['subj','Subjects'],['pp','Pluspoints'],['plan','Planner'],['tasks','Tasks'],['exams','Exams'],['focus','Focus'],['garden','Garden'],['ai','Lumora AI'],['set','Settings']];
+const P={};
+function landing(){return`<div class="hero"><div class="orb o1"></div><div class="orb o2"></div><div class="tb">${U?`<span class="mut">Hi, ${esc(S.name||U)}</span><button class="ic" data-a="out">Sign out</button>`:''}${thSel()}</div><div class="hin"><div class="lg2">✦ Lumora</div><h1 class="hl"><span>Organize your</span><br><span id="rw" class="rw" style="color:${RW[ri][1]}">${RW[ri][0]}</span></h1><p class="sub">Plan. Focus. Grow your garden.</p><div class="row" style="justify-content:center"><button class="btn lgb" data-a="start">${U?'Open Lumora':'Get started'}</button></div></div></div>`}
+const onboard=()=>`<div class="hero"><div class="tb">${thSel()}</div><div class="card hin" style="width:min(400px,100%)"><h1>Welcome ✦</h1><br><label>What’s your name?<input id="o1" autofocus></label><p class="err" id="oe"></p><div class="row" style="justify-content:flex-start">${bt('setn','Continue')}${ib('home','Back')}</div></div></div>`;
+let AU='in';
+const authView=()=>`<div class="hero"><div class="tb">${thSel()}</div><div class="card hin" style="width:min(400px,100%);text-align:left"><div class="lg2" style="text-align:center">✦ Lumora</div><br><div class="row" style="justify-content:center;margin-bottom:14px">${['in','new'].map(k=>`<button class="pill" style="font-size:14px;padding:5px 16px;${AU==k?'background:var(--pl);color:var(--onpl)':''}" data-a="amode" data-i="${k}">${k=='in'?'Sign in':'Sign up'}</button>`).join('')}</div>${AU=='new'?'<label>Your name<input id="anm" autocomplete="name" autofocus></label>':''}<label>Email<input id="an" inputmode="email" autocomplete="username"${AU=='in'?' autofocus':''}></label><label>Password<input id="ap" type="password" autocomplete="${AU=='in'?'current-password':'new-password'}"></label>${AU=='new'?'<label>Repeat password<input id="ap2" type="password" autocomplete="new-password"></label>':''}<p class="err" id="ae" role="alert"></p><div class="row" style="justify-content:space-between">${ib('home','Back')}<button class="btn" data-a="auth" data-i="${AU}">${AU=='in'?'Sign in':'Create account'}</button></div></div></div>`;
+function go(){document.documentElement.dataset.theme=TM;document.documentElement.lang=LG;if(V=='app'&&!U)V='auth';if(V=='app'&&!(S.vis||[]).includes(T())){S.vis=[...(S.vis||[]),T()];save()}$('#app').innerHTML=V=='land'?landing():V=='auth'?authView():V=='name'?onboard():`<div class="sh"><nav><button class="logo" data-a="home">✦ Lumora</button>${NAV.map(([k,l])=>`<a data-a="nav" data-i="${k}" class="${k==R?'on':''}">${l}</a>`).join('')}</nav><main><div class="top">${thSel()}</div>${P[R]()}</main></div>`;upd();if(R=='ai'&&V=='app')chat()}
+P.today=()=>{const t=T(),m=md(),h=new Date().getHours(),ses=S.ses.filter(s=>s.date==t).sort((a,b)=>a.start-b.start),dn=S.task.filter(x=>x.st==2).length,s=streak(),r=mins()%60;
+const upc=[...S.task.filter(x=>x.st!=2&&x.due).map(x=>({t:x.title,d:x.due,k:'Task'})),...S.exam.map(x=>({t:x.title,d:x.date,k:'Exam'}))].filter(x=>x.d>=t).sort((a,b)=>a.d<b.d?-1:1).slice(0,4);
+return hd(`Good ${h<12?'morning':h<18?'afternoon':'evening'}, ${esc(S.name)}`)+`<div class="g"><div class="card st"><b>${s}</b>day streak</div><div class="card st" style="--c:var(--t2)"><b>${fh(m[t]||0)}</b>studied today</div><div class="card st" style="--c:var(--t3)"><b>${dn}/${S.task.length}</b>tasks done</div></div>
+<div class="card" style="background:var(--t3)">${plant(200)}<p style="text-align:center;margin:4px 0"><b>${STG[stage(hrs())]}</b> · ${hrs()} h focused</p>${bar(r/60*100)}<small>${60-r} min until it grows</small><div class="row" style="justify-content:flex-start;margin-top:8px">${bt('nav','Start focus','focus')}${ib('nav','Garden','garden')}</div></div>
+<div class="card"><h2>Today</h2>${ses.length?ses.map(sesRow).join(''):'<p class="mut">Nothing planned.</p>'}<div class="row" style="justify-content:flex-start;margin-top:10px">${bt('sadd','Add session')}${bt('tadd','Add task')}</div></div>
+<div class="card"><h2>Coming up</h2>${upc.length?upc.map(x=>`<div class="it"><div><b>${esc(x.t)}</b><small>${x.k} · ${dl(x.d)}</small></div>${pill(dif(x.d,t)?'in '+dif(x.d,t)+' d':'today','t1')}</div>`).join(''):'<p class="mut">No deadlines.</p>'}</div>`};
+const sesRow=x=>`<div class="it ${x.done?'dn':''}"><div><b>${hm(x.start)}–${hm(x.start+x.len)} · ${esc(x.topic)}</b><small>${esc(sn(x.subj))} · ${x.len} min</small></div>${x.done?pill('Done ✓','t3'):bt('sdone','Done',x.id)+ib('sfocus','Focus',x.id)}${ib('sedit','Edit',x.id)}${ib('sdel','✕',x.id)}</div>`;
+P.plan=()=>{const t=T(),days=[...Array(14)].map((_,i)=>add(t,i));return hd('Planner',bt('sadd','Add session'))+(days.map(d=>{const a=S.ses.filter(s=>s.date==d).sort((x,y)=>x.start-y.start),e=S.exam.filter(x=>x.date==d),k=S.task.filter(x=>x.due==d&&x.st!=2);if(!a.length&&!e.length&&!k.length)return'';return`<div class="card"><h2>${dl(d)}</h2>${e.map(x=>`<div class="it"><div><b>${esc(x.title)}</b></div>${pill('Exam','t1')}</div>`).join('')}${k.map(x=>`<div class="it"><div><b>${esc(x.title)}</b></div>${pill('Due','t2')}</div>`).join('')}${a.map(sesRow).join('')}</div>`}).join('')||emp('Nothing planned for 2 weeks.',bt('sadd','Add session')))};
+P.tasks=()=>{const a=[...S.task].sort((x,y)=>(x.st==2)-(y.st==2)||((x.due||'9')<(y.due||'9')?-1:1));return hd('Tasks',bt('tadd','Add task'))+(a.length?`<div class="card">${a.map(x=>{const od=x.st!=2&&x.due&&x.due<T();return`<div class="it ${x.st==2?'dn':''}"><div><b>${esc(x.title)}</b><small>${esc(sn(x.subj))}${x.due?' · '+dl(x.due):''} · ${['','Low','Medium','High'][x.pri]}</small></div><button class="pill" style="${od?'border-color:#c0415f;color:#c0415f':''}" data-a="tst" data-i="${x.id}">${x.st==2?'Done ✓':od?'Overdue':x.st==1?'Doing':'To do'}</button>${x.st==2?'':ib('tfocus','Focus',x.id)}${ib('ted','Edit',x.id)}${ib('tdel','✕',x.id)}</div>`}).join('')}</div>`:emp('No tasks yet.',bt('tadd','Add task')))};
+P.exams=()=>{const t=T(),a=[...S.exam].sort((x,y)=>x.date<y.date?-1:1);return hd('Exams',bt('exadd','Add exam'))+(a.length?a.map(e=>{const d=dif(e.date,t);return`<div class="card" style="background:var(--${d<0?'card':d<=7?'t1':'t2'})"><h2>${esc(e.title)}</h2><b>${d<0?'Finished':d?(d==1?'1 day to go':d+' days to go'):'Today'}</b> · ${dl(e.date)}<br><small class="mut">${esc(sn(e.subj))}</small><div class="row" style="justify-content:flex-start;margin-top:8px">${ib('exedit','Edit',e.id)}${ib('exdel','✕',e.id)}</div></div>`}).join(''):emp('No exams yet.',bt('exadd','Add exam')))};
+P.subj=()=>{const sm={};S.foc.forEach(f=>sm[f.subj]=(sm[f.subj]||0)+f.m);return hd('Subjects',bt('subadd','Add subject'))+(S.sub.length?S.sub.map(s=>{const ex=S.exam.filter(e=>e.subj==s.id&&e.date>=T()).sort((a,b)=>a.date<b.date?-1:1)[0];return`<div class="card"><h2><i class="dot" style="background:${CO[s.c]}"></i>${esc(s.name)}</h2><p class="mut">${fh(sm[s.id]||0)} studied · ${S.task.filter(x=>x.subj==s.id&&x.st!=2).length} open tasks${ex?' · exam in '+dif(ex.date,T())+' d':''}</p><div class="row" style="justify-content:flex-start">${ib('subedit','Edit',s.id)}${ib('subdel','✕',s.id)}</div></div>`}).join(''):emp('Add your subjects.',bt('subadd','Add subject')))};
+const upd=()=>{const t=$('#tm');if(!t)return;t.textContent=hs(FC.left);$('#rg').style.strokeDashoffset=565.5*(1-FC.left/(FC.len*60))};
+// ---- Pluspoints (Gymnasium promotion points) ----
+const r2=n=>Math.round(n*100)/100,sg=n=>(n>0?'+':'')+r2(n);
+const GR=s=>{const g=S.gr.filter(x=>x.subj==s.id),w=g.reduce((a,x)=>a+x.w,0);if(!w)return null;const a=g.reduce((t,x)=>t+x.g*x.w,0)/w;return{a,n:S.pr.rnd=='half'?Math.round(a*2)/2:r2(a),g}};
+const pt=n=>n>=4?n-4:(n-4)*2;
+function ppSum(){let pl=0,mi=0;S.sub.forEach(s=>{const r=GR(s);if(r&&s.pf!=0){const d=r.n-4;d>0?pl+=d:mi-=d}});return{pl,mi,b:pl-2*mi}}
+const grForm=x=>form(x?'Edit grade':'New grade',[['subj','Subject','select',S.sub.map(s=>[s.id,s.name])],['title','Exam / note (optional)','text'],['g','Grade (1–6)','number'],['w','Weight','number']],x||{w:1},o=>{const g=+o.g,w=+o.w;if(!(g>=1&&g<=6))return'Grade must be between 1 and 6.';if(!(w>0))return'Weight must be above 0.';up(S.gr,x?.id,{subj:o.subj,title:o.title.trim(),g,w})});
+P.pp=()=>{if(!S.sub.length)return hd('Pluspoints')+emp('Add your subjects first.',bt('subadd','Add subject'));
+const t=ppSum();
+return hd('Pluspoints',bt('gadd','Add grade'))+`<div style="text-align:center;margin:20px 0 28px;font:400 clamp(56px,16vw,88px)/1 'DM Serif Display',Georgia,serif;color:var(--pl)">${sg(t.b)}</div><p class="mut" style="text-align:center;margin:-14px 0 6px">Plus points <b>${sg(t.pl)}</b> · Minus points <b>${sg(-2*t.mi)}</b> (counted double)</p><p class="mut" style="text-align:center;margin:0 0 18px">Each grade is rounded to the nearest half. Points above 4 count once. Points below 4 count double.</p>`+
+S.sub.map(s=>{const r=GR(s);return`<div class="card"><div class="it" style="border:0;padding:0"><div><b>${esc(s.name)}</b>${s.pf==0?'<small>not counted</small>':''}</div>${r?`<b>${r.n}</b><span class="mut">${s.pf==0?'':sg(pt(r.n))}</span>`:'<span class="mut">–</span>'}</div>${S.gr.filter(x=>x.subj==s.id).map(x=>`<div class="it"><div>${x.g}${x.w!=1?' ×'+x.w:''} <span class="mut">${esc(x.title)}</span></div>${ib('ged','Edit',x.id)}${ib('gdel','✕',x.id)}</div>`).join('')}</div>`}).join('')};
+// ---- Lumora AI: reads your documents on your device and answers only from them ----
+let OL=null;const tx=(en,de)=>(OL||LG)=='de'?de:en;
+const AI={docs:[],msgs:[],draft:'',err:'',busy:0,seed:0,ix:null};
+const md2=t=>esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\{\{i\}\}(.+?)\{\{\/i\}\}/g,'<i>$1</i>').replace(/\n/g,'<br>');
+const SD=new Set('der die das den dem des ein eine einer einen einem eines und oder aber auch nicht ist sind war waren wird werden wurde wurden hat haben hatte hatten sein seine seiner ihre ihr ihm ihn sie er es wir ich du mit von zu zum zur im in am an auf aus bei nach vor über unter für durch als wie wenn dass so noch nur sich um bis dann dort hier man kann können muss müssen soll sollen was wer wo wann warum welche welcher welches diese dieser dieses dies sehr mehr viel viele schon wieder gegen ohne wurde sowie jedoch daher dabei damit dazu dafür darauf davon zwischen während werden wird würde kann könnte sondern weil denn also etwa sogar jede jeder jedes mehrere einige alle allen anderen andere eins zwei drei vier fünf sechs sieben acht neun zehn erste ersten erster erstes zweite dritte art arten weise teil teile'.split(' ')),SE=new Set('the an and or but also not is are was were be been being has have had it its they them their he she we you with of to in on at for from by as that this these those which who what when where why how can could will would should may might than then there here such into about over under more most very each other some any both many much between during after before while because however therefore thus used use using one two three four five six seven eight nine ten types kinds sorts first second third form forms way ways part parts'.split(' ')),QW=new Set('explain describe tell give please show mean means meaning does did doing done say said know kind sort type erkläre erklär beschreibe nenne gib zeig sag types kinds bedeutet wieviel wieviele bitte genau eigentlich definition define made make makes'.split(' '));
+const lang=t=>{let d=0,e=0;(t.toLowerCase().match(/\p{L}+/gu)||[]).slice(0,3000).forEach(x=>{SD.has(x)&&d++;SE.has(x)&&e++});return d>e?'de':e>d?'en':LG};
+const stem=w=>{w=w.toLowerCase();if(w.length<5)return w;const r=w.replace(/(ungen|ung|ings|ing|ments|ment|ness|ies|ied|ed|ly|ern|en|er|es|e|n|s)$/,'');return r.length>=3?r:w};
+const wordsOf=t=>t.match(/[\p{L}\p{N}]+/gu)||[];
+const okw=w=>{const l=w.toLowerCase();return w.length>2&&!SD.has(l)&&!SE.has(l)&&!/^\d+$/.test(w)};
+const tok=t=>wordsOf(t).filter(okw).map(stem),qtok=t=>wordsOf(t).filter(w=>okw(w)&&!QW.has(w.toLowerCase())).map(stem);
+const cap1=s=>s.charAt(0).toUpperCase()+s.slice(1),dot=s=>/[.!?…]$/.test(s)?s:s+'.';
+const cut=(s,n)=>{if(s.length<=n)return s;let c=s.slice(0,n),i=Math.max(c.lastIndexOf(', '),c.lastIndexOf('; '));if(i<n*.5)i=c.lastIndexOf(' ');return c.slice(0,i>0?i:n).replace(/[,;:]$/,'')+'…'};
+function rnd(seed){let a=seed>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function shuf(a,seed){const r=rnd(seed),b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+// ---- reading documents ----
+const AB=/\b(?:z\.\s?B|d\.\s?h|u\.\s?a|u\.\s?U|usw|bzw|ca|vgl|Abb|Nr|Dr|Prof|etc|e\.g|i\.e|vs|approx|Fig|No|St|ggf|inkl|evtl)\./gi;
+function splitSents(p){p=p.replace(AB,m=>m.replace(/\./g,'‡')).replace(/(\d)\.(\d)/g,'$1‡$2');
+return p.split(/(?<=[.!?…])\s+(?=[A-ZÄÖÜ„"'(\d•])/).flatMap(s=>{s=s.replace(/‡/g,'.').trim();if(s.length<=480)return[s];const k=s.split(/;\s+/);return k.length>1?k.map(dot):[s]}).filter(Boolean)}
+const headLike=l=>l.length<=70&&!/[.!?:;,]$/.test(l)&&/^\p{Lu}|^\d/u.test(l)&&l.split(/\s+/).length<=9&&/\p{L}{3}/u.test(l);
+function textBlocks(txt){const out=[],L=txt.replace(/\r/g,'').split('\n');let para=[];const flush=()=>{if(para.length){out.push({k:'p',t:para.join(' ').replace(/\s+/g,' ').trim()});para=[]}};
+L.forEach((raw,i)=>{const l=raw.trim();if(!l){flush();return}let m;
+if((m=l.match(/^#{1,6}\s+(.+)$/))){flush();out.push({k:'h',t:m[1]});return}
+const pb=!i||!L[i-1].trim(),nb=i+1>=L.length||!L[i+1].trim();
+if(pb&&nb&&/^\d+(?:\.\d+)*[.)]?\s+\p{Lu}[^.!?:]{2,70}$/u.test(l)){flush();out.push({k:'h',t:l.replace(/^\d+(?:\.\d+)*[.)]?\s+/,'')});return}
+if((m=l.match(/^(?:[-*•–]|\d+[.)])\s+(.+)$/))){flush();out.push({k:'li',t:m[1]});return}
+if((headLike(l)&&pb&&nb)||(l.length<=60&&l===l.toUpperCase()&&/\p{L}{3}/u.test(l)&&pb&&nb)){flush();out.push({k:'h',t:l});return}
+para.push(l)});flush();return out}
+function htmlBlocks(html){const d=new DOMParser().parseFromString(html,'text/html'),out=[];
+const clean=t=>t.replace(/\s+/g,' ').trim();
+const walk=n=>{if(n.nodeType!=1)return;const g=n.tagName;
+if(/^H[1-6]$/.test(g)){const t=clean(n.textContent);if(t)out.push({k:'h',t})}
+else if(g=='P'){const t=clean(n.textContent);if(!t)return;if(n.children.length==1&&/^(STRONG|B)$/.test(n.firstElementChild.tagName)&&t.length<=80&&!/[.!?]$/.test(t))out.push({k:'h',t});else out.push({k:'p',t})}
+else if(g=='UL'||g=='OL')n.querySelectorAll('li').forEach(li=>{const t=clean(li.textContent);if(t)out.push({k:'li',t})});
+else if(g=='TABLE')n.querySelectorAll('tr').forEach(tr=>{const t=[...tr.cells].map(c=>clean(c.textContent)).filter(Boolean).join(' | ');if(t)out.push({k:'li',t})});
+else n.childNodes.forEach(walk)};
+d.body.childNodes.forEach(walk);return out}
+async function pdfBlocks(buf){
+const pdf=await pdfjsLib.getDocument({data:new Uint8Array(buf)}).promise,lines=[];
+for(let p=1;p<=pdf.numPages;p++){const c=await(await pdf.getPage(p)).getTextContent();let cur=null;
+for(const it of c.items){if(typeof it.str!='string')continue;const x=it.transform[4],y=it.transform[5],sz=Math.abs(it.transform[3])||it.height||10;
+if(cur&&Math.abs(y-cur.y)<=Math.max(2,sz*.45)){const gap=x-cur.x2;if(it.str&&cur.t&&!/\s$/.test(cur.t)&&!/^\s/.test(it.str)&&gap>sz*.12)cur.t+=' ';cur.t+=it.str;cur.x2=x+(it.width||0);if(it.str.trim())cur.sz=Math.max(cur.sz,sz)}
+else{if(cur)lines.push(cur);cur={t:it.str,y,x2:x+(it.width||0),sz:it.str.trim()?sz:0,p}}}
+if(cur)lines.push(cur)}
+let L=lines.map(l=>({...l,t:l.t.replace(/\s+/g,' ').trim()})).filter(l=>l.t);
+const seen={};L.forEach(l=>{const k=l.t.replace(/\d+/g,'#');(seen[k]=seen[k]||new Set()).add(l.p)});
+L=L.filter(l=>{const k=l.t.replace(/\d+/g,'#');if(/^\d{1,4}$/.test(l.t)||/^(page|seite)\s+\d+/i.test(l.t))return false;return!(l.t.length<90&&seen[k].size>=3&&seen[k].size>=pdf.numPages*.5)});
+const bySz={};L.forEach(l=>{const k=Math.round(l.sz*2)/2;bySz[k]=(bySz[k]||0)+l.t.length});
+const body=+(Object.entries(bySz).sort((a,b)=>b[1]-a[1])[0]||[10])[0]||10,out=[];let cur=null;
+const flush=()=>{if(cur){out.push(cur);cur=null}};
+const BUL=/^(?:[•●▪◦·\-–*]|\d+[.)])\s+/;
+L.forEach((l,i)=>{const prev=L[i-1];
+const head=(l.sz>=body*1.18&&l.t.length<=110&&!/[.!?]$/.test(l.t))||(l.t.length<=60&&l.t===l.t.toUpperCase()&&/\p{L}{3}/u.test(l.t)&&l.sz>=body*.98);
+if(head){flush();const last=out[out.length-1];if(last&&last.k=='h'&&prev&&prev.p==l.p&&Math.abs(prev.sz-l.sz)<.6&&prev.t.length<110&&last.t.length+l.t.length<120)last.t+=' '+l.t;else out.push({k:'h',t:l.t.replace(/^\d+(?:\.\d+)*[.)]?\s+(?=\p{Lu})/u,'')});return}
+if(BUL.test(l.t)){flush();cur={k:'li',t:l.t.replace(BUL,'')};return}
+const gap=prev&&prev.p==l.p?prev.y-l.y:0,same=prev&&prev.p==l.p?gap<=Math.max(l.sz,body)*1.7:(prev&&!/[.!?:]$/.test(prev.t));
+const wasHead=out.length&&out[out.length-1].k=='h'&&!cur;
+if(cur&&same&&!wasHead){cur.t=/-$/.test(cur.t)&&/^\p{Ll}/u.test(l.t)?cur.t.slice(0,-1)+l.t:cur.t+' '+l.t}else{flush();cur={k:'p',t:l.t}}});
+flush();return out}
+function buildDoc(name,blocks){const secs=[];let cur={h:'',u:[]};const push=()=>{if(cur.u.length)secs.push(cur)};
+for(const b of blocks){if(b.k=='h'){push();cur={h:b.t,u:[]}}
+else if(b.k=='li'){const t=b.t.trim();if(t.length>=8)cur.u.push({t,li:1})}
+else splitSents(b.t).forEach(s=>{if(s.length>=25||(s.length>=12&&/:$/.test(s)))cur.u.push({t:s})})}
+push();
+if(secs.length<=1&&!(secs[0]&&secs[0].h)){const all=secs.length?secs[0].u:[];secs.length=0;for(let i=0;i<all.length;i+=14)secs.push({h:'',u:all.slice(i,i+14)})}
+const us=[];secs.forEach((s,si)=>s.u.forEach(u=>{u.si=si;u.h=s.h;us.push(u)}));
+const text=blocks.map(b=>b.t).join('\n');return{name,text,secs,us,words:wordsOf(text).length,lang:lang(text)}}
+const rd=(f,m)=>new Promise((a,b)=>{const x=new FileReader();x.onload=()=>a(x.result);x.onerror=b;x['readAs'+m](f)});
+async function ext(f){const n=f.name.toLowerCase();let bl;
+if(n.endsWith('.pdf')){if(!window.pdfjsLib)throw Error(tx('PDF reader not loaded (no internet?)','PDF-Leser nicht geladen (kein Internet?)'));try{if(pdfjsLib.GlobalWorkerOptions&&!pdfjsLib.GlobalWorkerOptions.workerSrc)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'}catch(e){}bl=await pdfBlocks(await rd(f,'ArrayBuffer'))}
+else if(n.endsWith('.docx')){if(!window.mammoth)throw Error(tx('Word reader not loaded (no internet?)','Word-Leser nicht geladen (kein Internet?)'));bl=htmlBlocks((await mammoth.convertToHtml({arrayBuffer:await rd(f,'ArrayBuffer')})).value)}
+else{const t=await rd(f,'Text');bl=n.endsWith('.csv')?t.split(/\r?\n/).filter(x=>x.trim()).map(x=>({k:'li',t:x.replace(/[;,\t]+/g,' | ')})):textBlocks(t)}
+return buildDoc(f.name,bl)}
+// ---- understanding documents ----
+function index(){if(AI.ix)return AI.ix;const us=[];AI.docs.forEach((d,di)=>d.us.forEach((u,i)=>{u.d=d;u.di=di;u.i=i;u.tk=tok(u.t);us.push(u)}));const df={};us.forEach(u=>{u.tf={};u.tk.forEach(w=>u.tf[w]=(u.tf[w]||0)+1);Object.keys(u.tf).forEach(w=>df[w]=(df[w]||0)+1)});return AI.ix={us,df,N:us.length,avg:us.reduce((a,u)=>a+u.tk.length,0)/Math.max(1,us.length)}}
+const idf=w=>{const x=index(),n=x.df[w]||0;return Math.log(1+(x.N-n+.5)/(n+.5))};
+function bm25(qs,u){const x=index();let s=0;qs.forEach(w=>{const f=u.tf[w];if(f)s+=idf(w)*f*2.4/(f+1.4*(.25+.75*u.tk.length/x.avg))});if(u.h){const h=tok(u.h);qs.forEach(w=>{if(h.includes(w))s+=idf(w)*.6})}return s}
+const PRON=new Set('it this that these those there they he she we you i which who what when where how es dies diese dieser dieses er sie wir man wer was wann wo wie'.split(' '));
+const DEF=/^(.{2,60}?)\s+(?:is|are|means|refers to|is defined as|is called|can be defined as|denotes|describes|stands for|ist|sind|bedeutet|bezeichnet|heisst|heißt|beschreibt|definiert|steht für)\s+(.{12,})$/i,DE2=/^unter\s+(?:dem |der |den |einem |einer )?(.{2,60}?)\s+versteht man\s+(.{12,})$/i,COLON=/^([^:.]{2,50}):\s+(.{12,})$/;
+function defOf(u,top,hd){const t=u.t.replace(/\s+/g,' ').trim();let m,term,def,col=false;
+if((m=t.match(COLON))&&m[1].split(/\s+/).length<=6&&!/^\d/.test(m[1])){term=m[1];def=m[2];col=true}
+else if((m=t.match(DE2))){term=m[1];def=m[2]}
+else if((m=t.match(DEF))){term=m[1];def=m[2]}
+if(!term)return null;term=term.replace(/^(the|a|an|der|die|das|ein|eine)\s+/i,'').trim();
+const w=term.split(/\s+/);if(!w[0]||w.length>6||PRON.has(w[0].toLowerCase())||/[,;()]/.test(term))return null;
+const ts=tok(term);if(!ts.length)return null;
+if(!(u.li&&col)&&!ts.some(s=>top.has(s)||hd[s]))return null;
+return{term:cap1(term),def}}
+function shortDef(def){def=def.replace(/\s+/g,' ').trim().split(/;\s+/)[0];return dot(cap1(cut(def,170)))}
+function analyse(d){if(d.an)return d.an;
+const cnt={},sec={},surf={},cap={},hd={},S=Math.max(1,d.secs.length);
+d.us.forEach(u=>wordsOf(u.t).forEach((w,i)=>{if(!okw(w))return;const s=stem(w);cnt[s]=(cnt[s]||0)+1;(sec[s]=sec[s]||new Set()).add(u.si);const f=surf[s]=surf[s]||{};f[w]=(f[w]||0)+1;if(i>0&&/^\p{Lu}\p{Ll}/u.test(w))cap[s]=(cap[s]||0)+1}));
+d.secs.forEach(s=>tok(s.h).forEach(t=>hd[t]=1));
+const ranked=Object.keys(cnt).filter(s=>cnt[s]>=2||hd[s]).map(s=>{let v=cnt[s]*(S>2?Math.log(1+S/sec[s].size):1);if(hd[s])v*=1.6;if((cap[s]||0)>cnt[s]*.5)v*=1.3;return{s,v}}).sort((a,b)=>b.v-a.v);
+const kw={};ranked.slice(0,80).forEach(r=>kw[r.s]=r.v);
+const nm=s=>{const f=Object.entries(surf[s]).sort((a,b)=>b[1]-a[1]);let w=f[0][0];if(/^\p{Lu}\p{Ll}/u.test(w)){const lo=f.find(x=>/^\p{Ll}/u.test(x[0]));if(lo&&lo[1]>=f[0][1]*.5)w=lo[0]}return w};
+const bg={},bs={};
+d.us.forEach(u=>{let p=null;wordsOf(u.t).forEach(w=>{if(!okw(w)){p=null;return}const s=stem(w);if(p&&kw[p.s]&&kw[s]&&p.s!=s){const k=p.s+' '+s,sf=p.w+' '+w;bg[k]=(bg[k]||0)+1;const o=bs[k]=bs[k]||{};o[sf]=(o[sf]||0)+1}p={s,w}})});
+const cand=[],dom=new Set();
+Object.keys(bg).filter(k=>bg[k]>=2).forEach(k=>{const[a,b]=k.split(' '),sf=Object.entries(bs[k]).sort((x,y)=>y[1]-x[1])[0][0];cand.push({st:[a,b],name:/^\p{Lu}\p{Ll}/u.test(sf)&&!(cap[a]>cnt[a]*.5)?sf.toLowerCase():sf,v:Math.max(kw[a],kw[b])*(bg[k]/Math.max(cnt[a],cnt[b]))*1.4,n:bg[k]});if(bg[k]>=cnt[a]*.5)dom.add(a);if(bg[k]>=cnt[b]*.5)dom.add(b)});
+ranked.slice(0,24).forEach(r=>{if(!dom.has(r.s))cand.push({st:[r.s],name:nm(r.s),v:r.v,n:cnt[r.s]})});
+const terms=cand.sort((a,b)=>b.v-a.v).slice(0,14);
+const top=new Set(Object.keys(kw).slice(0,60)),defs=[],sn=new Set();
+d.us.forEach(u=>{const x=defOf(u,top,hd);if(x&&!/^(?:if|when|because|since|while|although|though|whereas|unless|once|wenn|weil|da|als|falls|obwohl|sobald|solange|während)\s/i.test(x.term.trim())){const k=tok(x.term).join(' ');if(k&&!sn.has(k)){sn.add(k);defs.push({...x,u})}}});
+return d.an={kw,terms,defs,cnt}}
+const has=(u,t)=>t.st.every(s=>u.tk.includes(s));
+function defFor(d,t){return analyse(d).defs.find(x=>{const ts=tok(x.term);return ts.length&&t.st.every(s=>ts.includes(s))})}
+function bestUnit(d,t){const a=analyse(d);let best=null,bs=-1;d.us.forEach(u=>{if(!has(u,t)||u.t.length<30||u.t.length>320)return;let v=u.tk.reduce((x,w)=>x+(a.kw[w]||0),0)/Math.sqrt(u.tk.length+1);if(u.li)v*=.8;if(v>bs){bs=v;best=u}});return best}
+const jac=(a,b)=>{const x=new Set(a.tk),y=new Set(b.tk);let i=0;x.forEach(w=>{if(y.has(w))i++});return i/Math.max(1,x.size+y.size-i)};
+function pickUnits(d,n){const a=analyse(d);
+const sc=d.us.map((u,i)=>{if(u.t.length<35||u.t.length>420||(u.t.match(/\p{L}/gu)||[]).length<u.t.length*.6)return{u,v:0,i};let v=u.tk.reduce((x,w)=>x+(a.kw[w]||0),0)/Math.sqrt(u.tk.length+3);if(d.secs[u.si].u[0]===u)v*=1.3;if(u.li)v*=.85;if(/^(however|but|aber|jedoch)\b/i.test(u.t))v*=.9;return{u,v,i}});
+const ch=[],ok=u=>ch.every(c=>jac(c.u,u)<.5),bySec={};
+sc.forEach(s=>{if(s.v>0&&(!bySec[s.u.si]||s.v>bySec[s.u.si].v))bySec[s.u.si]=s});
+Object.values(bySec).sort((x,y)=>y.v-x.v).slice(0,n).forEach(s=>ch.push(s));
+sc.filter(s=>s.v>0).sort((x,y)=>y.v-x.v).forEach(s=>{if(ch.length<n&&!ch.includes(s)&&ok(s.u))ch.push(s)});
+return ch.sort((x,y)=>x.i-y.i)}
+const nPick=d=>Math.min(12,Math.max(4,Math.round(d.us.length/9)));
+function easy(s){s=s.replace(/\s*\([^)]{0,200}\)/g,'').replace(/\s*\[[^\]]{0,60}\]/g,'').replace(/\s+/g,' ').trim();
+return s.split(/;\s+|\s+[–—]\s+|:\s+(?=[A-ZÄÖÜ])|,\s+(?=(?:but|aber|whereas|jedoch|während|while)\s)/).flatMap(p=>{p=p.trim();const w=p.split(' ');if(w.length<=24)return[p];const c=p.slice(0,p.lastIndexOf(', ',150)>60?p.lastIndexOf(', ',150):150);return[c.trim()]}).filter(p=>p.length>14).map(p=>dot(cap1(p)))}
+// ---- skills ----
+const secName=(d,u)=>d.secs[u.si].h||'';
+function sumText(d){const ch=pickUnits(d,nPick(d)),heads=d.secs.some(s=>s.h);let o='**'+tx('Summary','Zusammenfassung')+' – '+d.name+'**\n';
+if(!ch.length)return o+tx('There is not enough text to summarise.','Es gibt zu wenig Text für eine Zusammenfassung.');
+if(heads){let last=-1;ch.forEach(c=>{if(c.u.si!=last){last=c.u.si;o+='\n**'+(secName(d,c.u)||tx('Introduction','Einleitung'))+'**\n'}o+='• '+cut(c.u.t,300)+'\n'})}else o+=ch.map(c=>'• '+cut(c.u.t,300)).join('\n');return o.trim()}
+function termText(d){const a=analyse(d);let o='**'+tx('Key terms','Schlüsselbegriffe')+' – '+d.name+'**\n';const used=new Set();let n=0;
+a.terms.forEach(t=>{if(n>=12)return;const df=defFor(d,t);let s=df?shortDef(df.def):null;if(!s){const u=bestUnit(d,t);if(u&&!used.has(u))s=cut(u.t,200);if(u)used.add(u)}if(s){o+='• **'+cap1(df?df.term:t.name)+'**: '+s+'\n';n++}});
+return n?o.trim():o+tx('I could not find clear key terms. The text may be too short.','Ich habe keine klaren Schlüsselbegriffe gefunden. Der Text ist vielleicht zu kurz.')}
+function simpleText(d){const a=analyse(d),ch=pickUnits(d,Math.min(7,nPick(d))),st=ch.flatMap(c=>easy(c.u.t)).slice(0,10);let o='**'+tx('Explained simply','Einfach erklärt')+' – '+d.name+'**\n';
+if(!st.length)return o+tx('There is not enough text to explain.','Es gibt zu wenig Text zum Erklären.');
+o+='\n**'+tx('The big picture','Das grosse Ganze')+'**\n'+st.slice(0,2).join(' ')+'\n\n**'+tx('Step by step','Schritt für Schritt')+'**\n'+st.slice(2).map((s,i)=>(i+1)+'. '+s).join('\n');
+const ws=a.defs.slice(0,5);if(ws.length)o+='\n\n**'+tx('Words to know','Wörter, die du kennen solltest')+'**\n'+ws.map(x=>'• **'+x.term+'**: '+shortDef(x.def)).join('\n');
+return o+'\n\n{{i}}'+tx('Same content as your document, only shorter and simpler in wording.','Gleicher Inhalt wie in deinem Dokument, nur kürzer und einfacher formuliert.')+'{{/i}}'}
+function examQs(d){const a=analyse(d),q=[];a.defs.slice(0,5).forEach(x=>q.push(tx('Define ','Definiere ')+x.term+'.'));
+d.secs.filter(s=>s.h&&s.u.length>1).slice(0,5).forEach(s=>q.push(tx('Explain: ','Erkläre: ')+s.h.replace(/[.:]$/,'')+'.'));
+const pr=pairs(d);pr.slice(0,3).forEach(p=>q.push(tx('How are '+p.a+' and '+p.b+' connected?','Wie hängen '+p.a+' und '+p.b+' zusammen?')));
+if(!q.length)a.terms.slice(0,5).forEach(t=>q.push(tx('What does the text say about '+t.name+'?','Was sagt der Text über '+t.name+' aus?')));
+const r=AI.seed%Math.max(1,q.length);return q.slice(r).concat(q.slice(0,r)).slice(0,6)}
+function pairs(d){const a=analyse(d),ts=a.terms.slice(0,10),c={};d.us.forEach(u=>{const p=ts.filter(t=>has(u,t));for(let i=0;i<p.length;i++)for(let j=i+1;j<p.length;j++){const k=i+'|'+j;(c[k]=c[k]||{n:0,u})&&c[k].n++;if(u.t.length<c[k].u.t.length&&u.t.length>40)c[k].u=u}});
+return Object.entries(c).filter(e=>e[1].n>=2).sort((x,y)=>y[1].n-x[1].n).slice(0,3).map(([k,v])=>{const[i,j]=k.split('|');return{a:ts[i].name,b:ts[j].name,n:v.n,u:v.u}})}
+function analysisText(d){const a=analyse(d),heads=d.secs.filter(s=>s.h);let o='**'+tx('Analysis','Analyse')+' – '+d.name+'**\n';
+o+=tx('About '+d.words+' words, '+d.us.length+' statements'+(heads.length?', '+heads.length+' sections':'')+'.','Etwa '+d.words+' Wörter, '+d.us.length+' Aussagen'+(heads.length?', '+heads.length+' Abschnitte':'')+'.')+'\n';
+o+='\n**'+tx('Main topics','Hauptthemen')+'**\n';
+if(heads.length)o+=heads.slice(0,8).map(s=>{const t=analyseSec(s);return'• '+s.h+(t.length?' {{i}}('+t.join(', ')+'){{/i}}':'')}).join('\n');else o+=a.terms.slice(0,5).map(t=>'• '+cap1(t.name)).join('\n');
+o+='\n\n**'+tx('Important concepts','Wichtige Begriffe')+'**\n'+a.terms.slice(0,8).map(t=>cap1(t.name)).join(', ')+'.';
+const pr=pairs(d);if(pr.length)o+='\n\n**'+tx('How concepts connect','Wie die Begriffe zusammenhängen')+'**\n'+pr.map(p=>'• **'+cap1(p.a)+'** + **'+cap1(p.b)+'**: '+cut(p.u.t,220)).join('\n');
+o+='\n\n**'+tx('Likely exam questions','Mögliche Prüfungsfragen')+'**\n'+examQs(d).map((q,i)=>(i+1)+'. '+q).join('\n');return o}
+function analyseSec(s){const c={};s.u.forEach(u=>tok(u.t).forEach(w=>c[w]=(c[w]||0)+1));const sf={};s.u.forEach(u=>wordsOf(u.t).forEach(w=>{if(okw(w)){const k=stem(w);(sf[k]=sf[k]||{})[w]=1}}));return Object.entries(c).filter(e=>e[1]>=2).sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>Object.keys(sf[e[0]])[0].toLowerCase())}
+function allDefs(){const o=[];AI.docs.forEach(d=>analyse(d).defs.forEach(x=>o.push({...x,d})));return o}
+function makeQuiz(){const qs=[],seed=AI.seed*131+7,defs=shuf(allDefs(),seed);
+const L=['A','B','C','D'];const add=(q,right,wrong,why,src,i)=>{const o=shuf([right,...wrong.slice(0,3)],seed+i*17);qs.push({q,opts:o,ans:o.indexOf(right),sel:-1,why,src})};
+if(defs.length>=3)defs.slice(0,4).forEach((x,i)=>{const r=shortDef(x.def),w=defs.filter(y=>y.term!=x.term).map(y=>shortDef(y.def)).filter(s=>s!=r);if(w.length>=2)add(tx('What is '+x.term+'?','Was ist '+x.term+'?'),r,shuf(w,seed+i),dot(cut(x.u.t,220)),x.d.name,i)});
+const cands=[];AI.docs.forEach(d=>{const a=analyse(d);const uu=pickUnits(d,16);uu.forEach(c=>{if(c.u.li||c.u.t.length<50||c.u.t.length>230)return;const t=a.terms.find(t=>t.st.length==1&&has(c.u,t));if(t)cands.push({u:c.u,t,d})})});
+const pool=AI.docs.flatMap(d=>analyse(d).terms.filter(t=>t.st.length==1).map(t=>t.name));
+shuf(cands,seed+3).forEach((c,i)=>{if(qs.length>=8)return;const m=wordsOf(c.u.t).find(w=>stem(w)==c.t.st[0]);if(!m)return;const right=m,wrong=shuf(pool.filter(p=>stem(p)!=c.t.st[0]),seed+i).slice(0,3).map(p=>/^\p{Lu}/u.test(m)?cap1(p):p);if(wrong.length<3)return;
+add(tx('Fill in the blank: ','Ergänze die Lücke: ')+c.u.t.replace(new RegExp('(?<![\\p{L}\\p{N}])'+m.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?![\\p{L}\\p{N}])','u'),'_____'),right,wrong,c.u.t,c.d.name,i+10)});
+return qs.slice(0,8)}
+// ---- questions ----
+// ---- typo tolerance ----
+function editDist(a,b,max){const n=a.length,m=b.length;if(Math.abs(n-m)>max)return max+1;let p2=null,p1=Array.from({length:m+1},(_,j)=>j);
+for(let i=1;i<=n;i++){const c=[i];let mn=i;for(let j=1;j<=m;j++){let v=Math.min(p1[j]+1,c[j-1]+1,p1[j-1]+(a[i-1]==b[j-1]?0:1));if(i>1&&j>1&&a[i-1]==b[j-2]&&a[i-2]==b[j-1])v=Math.min(v,p2[j-2]+1);c[j]=v;if(v<mn)mn=v}if(mn>max)return max+1;p2=p1;p1=c}return p1[m]}
+function vocab(){const x=index();if(x.voc)return x.voc;const v=new Map();AI.docs.forEach(d=>d.us.forEach(u=>wordsOf(u.t).forEach(w=>{if(w.length<4||!okw(w)||/\d/.test(w))return;const l=w.toLowerCase(),e=v.get(l);if(e)e.n++;else v.set(l,{n:1,w:/^\p{Lu}\p{Ll}/u.test(w)&&!d.us.some(()=>false)?w:w})})));return x.voc=v}
+function nearWords(l,max,sameFirst){const out=[];vocab().forEach((e,k)=>{if(sameFirst&&k[0]!=l[0])return;const d=editDist(l,k,max);if(d<=max)out.push({k,d,n:e.n,w:e.w})});return out.sort((a,b)=>a.d-b.d||b.n-a.n)}
+function fixQ(q){AI.miss=[];if(!AI.docs.length)return{q,ch:[]};const v=vocab(),ch=[];
+const q2=q.replace(/[\p{L}]+/gu,w=>{const l=w.toLowerCase();if(w.length<4||v.has(l)||SD.has(l)||SE.has(l)||QW.has(l)||HD.has(l)||HE.has(l))return w;
+if(v.has(l.replace(/(en|er|es|e|n|s)$/,''))||[...[l+'s',l+'en',l+'n',l+'e',l+'es']].some(z=>v.has(z)))return w;
+const mx=l.length>=8?2:1,c=nearWords(l,mx,true)[0];
+if(c&&!(c.d>=1&&l.length<5&&c.n<2)){ch.push([w,c.w]);return /^\p{Lu}/u.test(w)?cap1(c.w):c.w}
+if(l.length>=5)AI.miss.push(l);return w});
+return{q:q2,ch}}
+// ---- thinking layer: language, easy language, guidance, connections ----
+['simple','simply','simpler','easy','easier','einfach','einfache','einfachen','einfacher','leicht','leichte','leichter','sprache','language','words','worten','wörtern','eli5','kid','kids','child','verständlich','verständlicher','ich','mir','mich','dir','verstehe','versteh','verstehen','kapier','kapiere','kapiert','understand','understood','dont','help','hilf','hilfe','nochmal','again','noch','mal','könntest','kannst','your','dein','deine','shorter','kürzer','short','kurz','noch'].forEach(w=>QW.add(w));
+const HD=new Set('ich mir mich dir dich wie wo womit fange fang anfangen beginnen anfang gut gute guter guten besten beste soll sollte kannst könntest bitte erklär erkläre erklären lernen lerne verstehe versteh verstehen nicht kein keine zeig zeige gib mach machen mal einfacher einfach leichter leicht sprache wichtig wichtigste zusammenhang hängen hängt zusammen unterschied bedeutet gibt ob meine mein meinem meiner dossier'.split(' '));
+const HE=new Set('i me my do does did how where what start begin good best should could would can you your please explain simple simply easier easy language learn understand dont show give make important connection connected related difference between mean means about is it dossier'.split(' '));
+const qlang=t=>{let d=0,e=0;(t.toLowerCase().match(/[\p{L}']+/gu)||[]).forEach(x=>{if(SD.has(x)||HD.has(x))d++;if(SE.has(x)||HE.has(x))e++});if(/[äöüß]/i.test(t))d+=2;return d>e?'de':e>d?'en':LG};
+const EZ=/(?:\b(?:simpl\w*|easy|easier|eli5|plain (?:english|language|words)|layman\w*|beginner\w*|dumb(?:ed)? (?:it )?down|baby steps|for (?:a )?(?:kid|child)\w*|like i'?m (?:5|five|a (?:kid|child)))\b|\b(?:don'?t|do not|didn'?t) (?:understand|get it|follow)\b|\beinfach\w*|\bleicht\w*|\bverst[aä]ndlich\w*|\blaienhaft|\banf[aä]nger\w*|\bkindgerecht|\bnicht (?:verstanden|kapiert)|\b(?:verstehe|versteh|kapier\w*)\b.{0,15}\bnicht|\bnicht\b.{0,15}\b(?:verstehe|versteh)\b)/i;
+const ez=q=>{const m=q.match(EZ);if(!m)return false;if(AI.docs.length&&/^(simpl|easy|einfach|leicht)/i.test(m[0])){const s=stem(m[0].toLowerCase().trim());if((index().df[s]||0)>=2)return false}return true};
+const RS=/\b(?:good|best|great|right|better|gute[rn]?|beste[rn]?|guten) (?:start|starting point|way to start|beginning|place to start|anfang|einstieg)\b|\b(?:where|how|what|wo|wie|womit|was)\b.{0,20}\b(?:do|should|can|could|sollte?|soll|kann|könnte|muss)\b.{0,6}\b(?:i|we|ich|wir)\b.{0,20}\b(?:start|begin|first|zuerst|anfangen|anfange|beginne|beginnen|fange|learn|study|lernen|lerne|approach|tackle|angehen)|\b(?:wie|wo|womit)\b.{0,12}\b(?:fange|beginne|starte|fang)\b|\b(?:where|how) to (?:start|begin)\b|\bhow to (?:learn|study)\b|\b(?:study|learning|lern|revision) ?(?:plan|path|order)\b|\blernplan\b|\broadmap\b|\breihenfolge\b|\beinstieg\b|\bfirst step\b|\berster schritt\b/i;
+const RP=/\b(?:most important|wichtigste\w*|am wichtigsten|key (?:points|takeaways|ideas)|main (?:points|ideas)|must[- ]know|what (?:should|do) i (?:know|remember)|was (?:muss|soll|sollte) ich (?:wissen|lernen|mir merken|beachten)|worauf (?:muss|soll|sollte) ich|prioriti[sz]e|merken|exam (?:tips|prep)|pr[uü]fungsvorbereitung)\b/i;
+const RC=/\b(?:connect\w*|relat(?:ion\w*|ed|es|ing|e)|zusammenh[aä]ng\w*|verkn[uü]pf\w*|verbind\w*|beziehung\w*|links? between|big picture|gesamtbild|beeinfluss\w*|h[aä]ngt?\b.{0,40}\bzusammen|h[aä]ngen\b.{0,40}\bzusammen)\b/i;
+function lastRaw(){for(let i=AI.msgs.length-1;i>=0;i--){const x=AI.msgs[i];if(x.r=='a'&&x.raw)return x}return null}
+function simplify(t,lv){lv=lv||1;const out=[];let nb=0;
+t.split('\n').forEach(l=>{const s=l.trim();if(!s){if(out.length&&out[out.length-1]!=='')out.push('');return}
+const clean=s.replace(/\{\{i\}\}.*?\{\{\/i\}\}/g,'').replace(/\s+/g,' ').trim(),isLi=/^(?:•|\d+\.)\s/.test(clean);
+if(!clean||/^(?:From your documents|Aus deinen Dokumenten)\b/.test(clean))return;
+if(!isLi&&(/^\*\*[^*]+\*\*(?:\s*\([^)]*\))?:?$/.test(clean)||/:$/.test(clean))){out.push(clean.replace(/\s+:$/,':'));return}
+if(lv>=2&&nb>=4)return;
+let body=isLi?clean.replace(/^(?:•|\d+\.)\s+/,''):clean,pre='';const pm=body.match(/^(\*\*[^*]+\*\*(?:\s*\([^)]*\))?:\s*)(.*)$/);if(pm){pre=pm[1];body=pm[2]}
+let ss=easy(body);if(!ss.length)ss=[dot(cap1(cut(body,140)))];if(lv>=2)ss=ss.slice(0,1).map(x=>dot(cut(x.replace(/[….]$/,''),80)));
+ss.forEach((x,i)=>{if(lv>=2&&nb>=4)return;out.push('• '+(i==0?pre:'')+x);nb++})});
+while(out.length&&out[out.length-1]==='')out.pop();
+const plain=out.join(' '),tk=new Set(tok(plain)),ws=allDefs().filter(x=>{const ts=tok(x.term);return ts.length&&ts.every(s=>tk.has(s))&&!plain.includes(shortDef(x.def).slice(0,30))}).slice(0,lv>=2?2:4);
+let o='**'+tx('In simple words','Einfach erklärt')+'**\n'+(lv>=2?tx('Let me say it even more simply:','Ich sage es noch einfacher:')+'\n':'')+out.join('\n');
+if(ws.length)o+='\n\n**'+tx('Words to know','Wörter, die du kennen solltest')+'**\n'+ws.map(x=>'• **'+cap1(x.term)+'**: '+shortDef(x.def)).join('\n');
+return o+'\n\n{{i}}'+tx('Same content, shorter and in easier words. Say “even simpler” and I will shorten it more.','Gleicher Inhalt, kürzer und mit einfacheren Wörtern. Sag „noch einfacher“ und ich kürze weiter.')+'{{/i}}'}
+function secBest(d,si){const a=analyse(d);let best=null,bv=-1;d.secs[si].u.forEach(u=>{if(u.t.length<35||u.t.length>340)return;let v=u.tk.reduce((x,w)=>x+(a.kw[w]||0),0)/Math.sqrt(u.tk.length+3);if(d.secs[si].u[0]===u)v*=1.3;if(v>bv){bv=v;best=u}});return best}
+const spread=(d,t)=>new Set(d.us.filter(u=>has(u,t)).map(u=>u.si)).size,firstIdx=(d,t)=>{const i=d.us.findIndex(u=>has(u,t));return i<0?1e9:i};
+function termLine(d,t){const df=defFor(d,t);if(df)return'**'+cap1(df.term)+'**: '+shortDef(df.def);const u=bestUnit(d,t);return u?'**'+cap1(t.name)+'**: '+cut(u.t,200):null}
+function allTerms(){const o=[],seen=new Set();AI.docs.forEach(d=>analyse(d).terms.forEach(t=>{const k=t.st.join(' ');if(!seen.has(k)){seen.add(k);o.push(Object.assign({},t,{d}))}}));return o}
+function sharedTerms(){const ds=AI.docs;if(ds.length<2)return[];const maps=ds.map(d=>{const m={};analyse(d).terms.forEach(t=>m[t.st.join(' ')]=t);return m}),keys=[...new Set(maps.flatMap(m=>Object.keys(m)))],o=[];
+keys.forEach(k=>{const it=[];maps.forEach((m,i)=>{if(m[k])it.push({d:ds[i],t:m[k]})});if(it.length>=2)o.push({k,it})});return o}
+function startText(){const ds=AI.docs,multi=ds.length>1;let o='**'+tx('A good way to start','So kannst du anfangen')+'**\n';
+if(multi){const sh=sharedTerms(),sc=ds.map(d=>sh.filter(x=>x.it.some(y=>y.d===d)).length),mx=Math.max(...sc),bi=sc.indexOf(mx);if(ds.length>2&&mx>Math.min(...sc))o+=tx('Begin with **'+ds[bi].name+'**. It shares the most topics with your other files, so it ties them together.','Beginne mit **'+ds[bi].name+'**. Es teilt die meisten Themen mit deinen anderen Dateien und verbindet sie.')+'\n';else if(sh.length)o+=tx('Your files overlap on: ','Deine Dateien überschneiden sich bei: ')+sh.slice(0,4).map(x=>cap1(x.it[0].t.name)).join(', ')+'.\n'}
+ds.forEach(d=>{const a=analyse(d),heads=d.secs.map((s,i)=>({s,i})).filter(x=>x.s.h&&x.s.u.length),big=pickUnits(d,1)[0];
+const first=a.defs[0]?cut(a.defs[0].u.t,260):big?cut(big.u.t,260):d.us[0]?cut(d.us[0].t,260):'';
+if(multi)o+='\n**'+d.name+'**\n';else o+='\n';
+if(first)o+='**1. '+tx('Get the big picture','Verschaffe dir den Überblick')+'**\n'+first+'\n\n';
+const fo=a.terms.slice(0,8).map(t=>({t,s:spread(d,t),f:firstIdx(d,t)})).sort((x,y)=>y.s-x.s||x.f-y.f).slice(0,3).sort((x,y)=>x.f-y.f),base=fo.map(x=>termLine(d,x.t)).filter(Boolean);
+if(base.length)o+='**2. '+tx('Learn the building blocks first','Lerne zuerst die Grundbausteine')+'**\n'+base.map(x=>'• '+x).join('\n')+'\n\n';
+const ord=heads.length>=2?heads.slice(0,6).map((x,i)=>{const u=secBest(d,x.i);return(i+1)+'. **'+cut(x.s.h.replace(/[.:]$/,''),50)+'**'+(u?': '+cut(u.t,150):'')}):a.terms.slice(0,8).map(t=>({t,f:firstIdx(d,t)})).sort((x,y)=>x.f-y.f).slice(0,5).map((x,i)=>{const l=termLine(d,x.t);return l?(i+1)+'. '+l:null}).filter(Boolean);
+if(ord.length)o+='**3. '+tx('Then work through it in this order','Gehe es dann in dieser Reihenfolge durch')+'**\n'+ord.join('\n')+'\n\n'});
+o+='**'+tx('Then check yourself','Danach teste dich')+'**\n'+tx('Use the Quiz above, and ask me about any term you are unsure about.','Nutze oben das Quiz und frage mich nach jedem Begriff, bei dem du unsicher bist.');
+return o+'\n\n{{i}}'+tx('I chose the building blocks because they come back in many parts of your text.','Ich habe die Grundbausteine gewählt, weil sie in vielen Teilen deines Textes wiederkehren.')+'{{/i}}'}
+function priorityText(){const ds=AI.docs;let o='**'+tx('What matters most','Das Wichtigste')+'**\n';
+ds.forEach(d=>{const a=analyse(d);o+='\n'+(ds.length>1?'**'+d.name+'**\n':'');const ts=a.terms.slice(0,5).map(t=>termLine(d,t)).filter(Boolean);if(ts.length)o+=ts.map(x=>'• '+x).join('\n')+'\n';
+const pu=pickUnits(d,Math.min(4,nPick(d)));if(pu.length)o+='\n'+tx('Key statements:','Zentrale Aussagen:')+'\n'+pu.map(c=>'• '+cut(c.u.t,260)).join('\n')+'\n'});
+return o.trim()+'\n\n{{i}}'+tx('Ranked by how often and how widely each idea appears in your text.','Geordnet danach, wie oft und wie breit eine Idee in deinem Text vorkommt.')+'{{/i}}'}
+function topicsIn(q){const mp={};wordsOf(q).filter(w=>okw(w)&&!QW.has(w.toLowerCase())).forEach(w=>mp[stem(w)]=w);const qs=new Set(Object.keys(mp)),out=[],seen=new Set();
+AI.docs.forEach(d=>{const a=analyse(d);[...a.terms,...a.defs.map(x=>({st:tok(x.term),name:x.term}))].forEach(t=>{if(!t.st.length)return;const k=t.st.join(' ');if(seen.has(k))return;if(t.st.every(s=>qs.has(s))){seen.add(k);out.push({st:t.st,name:t.name})}})});
+const keep=out.filter(a=>!out.some(b=>b!==a&&b.st.length>a.st.length&&a.st.every(s=>b.st.includes(s))));
+const cov=new Set(keep.flatMap(t=>t.st)),df=index().df;qs.forEach(s=>{if(!cov.has(s)&&(df[s]||0)>0)keep.push({st:[s],name:mp[s]})});return keep.slice(0,3)}
+function bothUnits(A,B,n){const r=[];index().us.filter(u=>has(u,A)&&has(u,B)&&u.t.length>=30&&u.t.length<=360).sort((x,y)=>x.t.length-y.t.length).forEach(u=>{if(r.length<n&&r.every(z=>jac(z,u)<.5))r.push(u)});return r}
+function bridge(A,B){let best=null;allTerms().forEach(C=>{if(C.st.some(s=>A.st.includes(s)||B.st.includes(s)))return;const ua=bothUnits(A,C,1)[0],ub=bothUnits(B,C,1)[0];if(!ua||!ub)return;const v=idf(C.st[0])+(C.n||1)*.1;if(!best||v>best.v)best={C,ua,ub,v}});return best}
+function connectText(q){const tp=topicsIn(q),ix=index(),nm=t=>cap1(t.name);let o='**'+tx('How things connect','Wie alles zusammenhängt')+'**\n';
+const src=u=>' {{i}}('+u.d.name+'){{/i}}';
+if(tp.length>=2){const A=tp[0],B=tp[1],both=bothUnits(A,B,3);
+if(both.length)return o+tx('Your documents link '+nm(A)+' and '+nm(B)+' directly:','Deine Dokumente verbinden '+nm(A)+' und '+nm(B)+' direkt:')+'\n'+both.map(u=>'• '+cut(u.t,320)+src(u)).join('\n');
+const br=bridge(A,B);
+if(br)return o+tx(nm(A)+' and '+nm(B)+' never appear together, but both connect to **'+cap1(br.C.name)+'**:',nm(A)+' und '+nm(B)+' kommen nie zusammen vor, aber beide hängen mit **'+cap1(br.C.name)+'** zusammen:')+'\n• **'+nm(A)+' → '+cap1(br.C.name)+'**: '+cut(br.ua.t,260)+src(br.ua)+'\n• **'+cap1(br.C.name)+' → '+nm(B)+'**: '+cut(br.ub.t,260)+src(br.ub);
+o+=tx('I found no direct link between them. Here is what your documents say about each:','Ich habe keine direkte Verbindung gefunden. Das sagen deine Dokumente zu beiden:')+'\n';
+return o+[A,B].map(t=>{const b=ix.us.map(u=>({u,v:bm25(t.st,u)})).sort((x,y)=>y.v-x.v)[0];return b&&b.v>0?'• **'+nm(t)+'**: '+cut(b.u.t,260)+src(b.u):null}).filter(Boolean).join('\n')}
+if(tp.length==1){const A=tp[0],cnt={};ix.us.forEach(u=>{if(!has(u,A))return;allTerms().forEach(T=>{if(T.st.some(s=>A.st.includes(s)))return;if(has(u,T)){const k=T.st.join(' ');(cnt[k]=cnt[k]||{T,n:0,u}).n++;if(u.t.length<cnt[k].u.t.length&&u.t.length>40)cnt[k].u=u}})});
+const ns=Object.values(cnt).sort((x,y)=>y.n-x.n).slice(0,4);
+if(ns.length)return o+tx(nm(A)+' is connected to:',nm(A)+' hängt zusammen mit:')+'\n'+ns.map(x=>'• **'+nm(x.T)+'**: '+cut(x.u.t,240)+src(x.u)).join('\n')}
+const sh=sharedTerms();
+if(sh.length){o+=tx('These topics appear in more than one document:','Diese Themen kommen in mehreren Dokumenten vor:')+'\n';return o+sh.slice(0,4).map(x=>'• **'+cap1(x.it[0].t.name)+'**\n'+x.it.map(y=>{const u=bestUnit(y.d,y.t);return u?'   – '+cut(u.t,170)+' {{i}}('+y.d.name+'){{/i}}':''}).filter(Boolean).join('\n')).join('\n')}
+const pr=AI.docs.flatMap(d=>pairs(d).map(p=>({...p,d})));
+if(pr.length)return o+pr.slice(0,4).map(p=>'• **'+cap1(p.a)+'** + **'+cap1(p.b)+'**: '+cut(p.u.t,240)+' {{i}}('+p.d.name+'){{/i}}').join('\n');
+return o+tx('I could not find clear links. Name two topics, for example “How are A and B connected?”','Ich habe keine klaren Zusammenhänge gefunden. Nenne zwei Themen, zum Beispiel „Wie hängen A und B zusammen?“')}
+function relatedLine(pick,qs,T){const seen=new Set(qs),pk=new Set(pick.map(u=>u.di+'|'+u.si)),out=[],ix=index();
+allTerms().forEach(t=>{if(out.length>=3)return;if(t.st.some(s=>seen.has(s)))return;if(!(defFor(t.d,t)||t.d.secs.some(s=>s.h&&t.st.every(w=>tok(s.h).includes(w)))))return;if(!pick.some(u=>has(u,t)))return;const x=ix.us.find(y=>has(y,t)&&!pk.has(y.di+'|'+y.si));if(x)out.push({name:t.name,loc:x.h||x.d.name})});
+return out.length?'\n\n{{i}}'+T('Related in your documents: ','Dazu passt in deinen Dokumenten: ')+out.map(o=>cap1(o.name)+' ('+cut(o.loc,30)+')').join(', ')+'{{/i}}':''}
+
+const DQ=/^(?:what(?:'s| is| are| does)|who (?:is|are)|define|definiere|was (?:ist|sind|bedeutet|versteht man unter)|wer (?:ist|sind)|erkl[aä]re|explain|describe|beschreibe)\s+(?:an? |the |ein |eine |der |die |das |den |dem )?(.+?)\s*\??$/i;
+const CQ=/(?:difference|unterschied|vergleich|compare|comparison)\s+(?:between|zwischen|of|von)?\s*(.+?)\s+(?:and|und|vs\.?|versus|&|mit)\s+(.+?)\s*\??$/i;
+const WHY=/\b(because|since|therefore|due to|leads? to|causes?|results? in|weil|da|denn|deshalb|daher|führt zu|verursacht|ergibt|dadurch)\b/i;
+function answer(q){const ix=index(),ql=qlang(q),T=(en,de)=>ql=='de'?de:en;
+const fail=()=>{const sg=[...new Set((AI.miss||[]).flatMap(w=>nearWords(w,w.length>=7?3:2,false).slice(0,2).map(c=>c.w)))].slice(0,3),dm=sg.length?T('Did you mean: ','Meintest du: ')+sg.join(', ')+'? ':'';const mis=AI.docs.some(d=>d.lang!=ql)?T(' Your documents seem to be in another language, so try the key words as they are written there.',' Deine Dokumente sind offenbar in einer anderen Sprache. Versuche es mit den Schlüsselwörtern, wie sie dort stehen.'):'';const ts=AI.docs.flatMap(d=>analyse(d).terms.slice(0,3).map(t=>t.name)).slice(0,4);return dm+T('I could not find that in your documents. I only answer from what you uploaded.'+(ts.length?' Try asking about: '+ts.join(', ')+'.':''),'Dazu habe ich in deinen Dokumenten nichts gefunden. Ich antworte nur anhand deiner hochgeladenen Dokumente.'+(ts.length?' Frage zum Beispiel nach: '+ts.join(', ')+'.':'')+mis)};
+let m;
+if((m=q.match(CQ))){const out=[];[m[1],m[2]].forEach(s=>{const qs=qtok(s);if(!qs.length)return;const best=ix.us.map(u=>({u,v:bm25(qs,u)})).sort((a,b)=>b.v-a.v)[0];if(best&&best.v>0)out.push('**'+cap1(s.trim())+'** ('+best.u.d.name+'): '+cut(best.u.t,320))});if(out.length==2)return T('Here is what your documents say about each:','Das sagen deine Dokumente zu beiden:')+'\n'+out.map(x=>'• '+x).join('\n')}
+const listQ=/\b(list|enumerate|aufz[aä]hl\w*|nenne|welche|which|types|kinds|steps|stages|arten|schritte|phasen|stufen)\b/i.test(q);
+if(!listQ&&(m=q.match(DQ))){const sub=m[1].replace(/\s+(mean|means|bedeutet)$/i,''),qs=qtok(sub);if(qs.length){let best=null,bv=0;allDefs().forEach(x=>{const ts=tok(x.term);if(!ts.length)return;const ov=qs.filter(s=>ts.includes(s)).length/Math.max(qs.length,ts.length);if(ov>bv){bv=ov;best=x}});
+if(best&&bv>=.5){const u=best.u,nx=best.d.us[best.d.us.indexOf(u)+1],ctx=nx&&nx.si==u.si&&!nx.li&&nx.t.length<260?'\n• '+nx.t:'';return '**'+best.term+'** ('+best.d.name+')\n• '+dot(cap1(cut(best.def,300)))+ctx}}}
+let qs=qtok(q);const prev=AI.msgs.filter(x=>x.r=='u').slice(-2,-1)[0];if(prev&&!prev.skill&&!qs.length)qs=[...new Set([...qs,...qtok(prev.t)])];
+if(!qs.length)return q.trim().length<4?T('Please ask a question that includes a topic from your documents.','Bitte stelle eine Frage mit einem Thema aus deinen Dokumenten.'):startText();
+const why=/\b(why|warum|weshalb|wieso)\b/i.test(q),num=/\b(how many|how much|when|wann|wie viele|wie viel|wieviele|year|jahr|percent|prozent)\b/i.test(q),list=listQ;
+const sc=ix.us.map(u=>{let v=bm25(qs,u);if(v>0){if(why&&WHY.test(u.t))v*=1.4;if(num&&/\d/.test(u.t))v*=1.3}return{u,v}}).filter(s=>s.v>0).sort((a,b)=>b.v-a.v);
+if(!sc.length)return fail();
+const tw=qs.reduce((a,w)=>a+idf(w),0),mw=qs.reduce((a,w)=>a+(sc[0].u.tf[w]?idf(w):0),0);
+const near=qs.reduce((a,w)=>a+(sc.slice(0,5).some(s=>s.u.tf[w])?idf(w):0),0);
+if(near/Math.max(tw,1e-9)<.4)return fail();
+const top=sc[0].u;
+if(list||top.li){const d=top.d,i=d.us.indexOf(top),nx=d.us[i+1];let a=i,b=i,intro='';
+if(!top.li&&nx&&nx.li&&nx.si==top.si){a=b=i+1;intro=top.t}
+while(a>0&&d.us[a-1].li&&d.us[a-1].si==top.si)a--;while(b<d.us.length-1&&d.us[b+1].li&&d.us[b+1].si==top.si)b++;
+if(b-a>=1&&d.us[a].li){const run=d.us.slice(a,Math.min(b+1,a+12));return '**'+(secName(d,top)||d.name)+'** ('+d.name+')\n'+(intro?intro+'\n':'')+run.map(u=>'• '+u.t).join('\n')}}
+const pick=[top];sc.slice(1).forEach(s=>{if(pick.length<3&&s.v>=sc[0].v*.65&&pick.every(p=>jac(p,s.u)<.6))pick.push(s.u)});
+if(top.t.length<90||/:$/.test(top.t)){const nx=top.d.us[top.i+1];if(nx&&nx.si==top.si&&!pick.includes(nx))pick.splice(1,0,nx)}
+pick.sort((a,b)=>a.di-b.di||a.i-b.i);
+const srcs=[...new Set(pick.map(u=>u.d.name))];
+return T('From your documents','Aus deinen Dokumenten')+' {{i}}('+srcs.join(', ')+'){{/i}}:\n'+pick.map(u=>'• '+cut(u.t,380)+(u.h?' {{i}}('+cut(u.h,40)+'){{/i}}':'')).join('\n')+relatedLine(pick,qs,T)}
+const SKL={summary:['Summary','Zusammenfassung'],terms:['Key terms','Schlüsselbegriffe'],simple:['Explain simply','Einfach erklärt'],analysis:['Analysis','Analyse'],quiz:['Quiz','Quiz']};
+function route(q){const s=q.toLowerCase();
+if(/^(hi|hello|hey|hallo|servus|gr[uü]ezi|danke|thanks|thank you)\W*$/.test(s))return'hello';
+if(RS.test(s))return'start';
+if(/summar|zusammenfass|überblick|ueberblick|tl;?dr|what is (this|the) (document|text|file) about|worum geht|wovon handelt/.test(s))return'summary';
+if(/key ?terms?|keywords?|glossar|schl[uü]ssel|stichwort|wichtige begriffe|important terms|vocabulary|vokabeln/.test(s))return'terms';
+if(/(simpl|einfach|verst[aä]ndlich|eli5|easy)/.test(s)&&/(explain|erkl)/.test(s))return'simple';
+if(/analy[sz]|auswert|hauptthemen|main topics/.test(s))return'analysis';
+if(/quiz|test me|teste mich|pr[uü]fungsfrage|übungsfrage|uebungsfrage|exam questions|practice questions/.test(s))return'quiz';
+if(RP.test(s))return'priority';
+if(RC.test(s)&&!CQ.test(q))return'connect';
+return'qa'}
+function run(sk,q,m){let fx=[];AI.miss=[];if(q&&AI.docs.length&&sk!='hello'){index();const r=fixQ(q);q=r.q;fx=r.ch}
+run0(sk,q,m);if(fx.length&&m.t&&!m.quiz&&!m.cards)m.t=fx.slice(0,3).map(c=>tx('I read “'+c[0]+'” as “'+c[1]+'”.','Ich habe „'+c[0]+'“ als „'+c[1]+'“ gelesen.')).join(' ')+'\n\n'+m.t}
+function run0(sk,q,m){const ds=AI.docs;
+if(sk=='hello'){m.t=tx('Hello! Add a document with the paperclip, then ask me anything about it or pick a skill above. I only use what is in your documents.','Hallo! Füge mit der Büroklammer ein Dokument hinzu und frage mich dann etwas dazu oder wähle oben eine Fähigkeit. Ich nutze nur, was in deinen Dokumenten steht.');return}
+if(!ds.length){m.t=tx('Please add a document first with the paperclip button. I only answer from your uploaded documents.','Bitte füge zuerst mit der Büroklammer ein Dokument hinzu. Ich antworte nur anhand deiner hochgeladenen Dokumente.');return}
+index();AI.seed++;
+const E=!!q&&sk!='quiz'&&sk!='cards'&&(ez(q)||sk=='simple');
+if(E&&(sk=='simple'||sk=='qa')&&!qtok(q).length){const pv=lastRaw();if(pv){m.raw=pv.raw;m.lv=(pv.lv||0)+1;m.t=simplify(pv.raw,m.lv);return}m.t=ds.map(simpleText).join('\n\n');m.raw=m.t;return}
+if(E&&sk=='simple')sk='qa';
+if(sk=='summary')m.t=ds.map(sumText).join('\n\n');
+else if(sk=='terms')m.t=ds.map(termText).join('\n\n');
+else if(sk=='simple')m.t=ds.map(simpleText).join('\n\n');
+else if(sk=='analysis')m.t=ds.map(analysisText).join('\n\n');
+else if(sk=='quiz'){const z=makeQuiz();if(z.length<2)m.t=tx('There is not enough clear text for a quiz. Try a longer document.','Es gibt zu wenig klaren Text für ein Quiz. Versuche ein längeres Dokument.');else{m.t='**Quiz**\n'+tx('Pick the right answer for each question.','Wähle bei jeder Frage die richtige Antwort.');m.quiz=z}}
+else if(sk=='start')m.t=startText();
+else if(sk=='priority')m.t=priorityText();
+else if(sk=='connect')m.t=connectText(q);
+else m.t=answer(q);
+if(sk!='quiz'&&sk!='cards'){m.raw=m.t;if(E){m.lv=1;m.t=simplify(m.t,1)}}}
+// ---- screen ----
+P.ai=()=>hd('Lumora AI',ib('aclear','Clear chat'))+`<div class="card" style="background:var(--t2)"><h2>Study with your documents</h2><p class="mut">Add a PDF, Word or text file. Lumora AI reads it on your device and answers only from what is in your documents.</p><div id="dl"></div><div class="row" style="justify-content:flex-start;margin-top:8px">${Object.keys(SKL).map((k,i)=>i?ib('apre',SKL[k][0],k):bt('apre',SKL[k][0],k)).join('')}</div></div><div class="card"><div id="chat" aria-live="polite"></div><div class="comp"><button class="ic" data-a="apick" aria-label="Add document" title="Add document">📎</button><textarea id="aq" rows="1" placeholder="Ask about your documents…" aria-label="Your question"></textarea>${bt('asend','Send')}</div><input type="file" id="aif" multiple hidden accept=".pdf,.docx,.txt,.md,.csv,.json" aria-label="Upload documents"><p class="err" id="aerr" role="alert"></p><small class="mut">Your documents stay in this browser tab. Nothing is uploaded.</small></div>`;
+function msgHTML(m,mi){OL=m.ol||null;try{return msgHTML0(m,mi)}finally{OL=null}}
+function msgHTML0(m,mi){if(m.r=='u')return`<div class="msg me">${md2(m.t)}</div>`;
+let h=md2(m.t||'…');
+if(m.quiz){const done=m.quiz.every(q=>q.sel>=0),sc=m.quiz.filter(q=>q.sel==q.ans).length;
+h+=m.quiz.map((q,qi)=>`<div class="qq"><b>${qi+1}. ${esc(q.q)}</b>${q.opts.map((o,oi)=>`<button class="qo${q.sel>=0?(oi==q.ans?' ok':oi==q.sel?' no':''):''}" data-a="qa" data-i="${mi}:${qi}" data-j="${oi}"${q.sel>=0?' disabled':''}>${'ABCD'[oi]}) ${esc(o)}</button>`).join('')}${q.sel>=0?`<small class="mut">${q.sel==q.ans?'✓ ':'✗ '}${esc(cut(q.why,260))} (${esc(q.src)})</small>`:''}</div>`).join('');
+if(done)h+=`<p><b>${tx('Score','Ergebnis')}: ${sc}/${m.quiz.length}</b></p>`}
+return`<div class="msg ai">${h}</div>`}
+function chat(){const c=$('#chat');if(!c)return;
+$('#dl').innerHTML=AI.docs.length?AI.docs.map((d,i)=>`<span class="pill" style="background:var(--t3)">📄 ${esc(d.name)} <a data-a="adel" data-i="${i}" style="cursor:pointer" role="button" aria-label="Remove" tabindex="0">✕</a></span>`).join(' '):'<p class="mut">No document yet. Add a PDF, Word or text file with the paperclip.</p>';
+c.innerHTML=AI.msgs.length?AI.msgs.map(msgHTML).join(''):'<p class="mut">Ask a question about your documents or pick a skill above.</p>';
+c.scrollTop=c.scrollHeight;$('#aq').value=AI.draft;$('#aerr').textContent=AI.err}
+function quizPick(i,j){const[mi,qi]=i.split(':').map(Number),q=AI.msgs[mi]&&AI.msgs[mi].quiz&&AI.msgs[mi].quiz[qi];if(!q||q.sel>=0)return;q.sel=+j;chat()}
+async function addDocs(fl){AI.err='';for(const f of fl){try{if(f.size>25e6)throw Error(tx('file too large','Datei zu gross'));const d=await ext(f);if(d.us.length<2&&d.words<30)throw Error(tx('no text found (scanned file?)','kein Text gefunden (gescannte Datei?)'));AI.docs.push(d);AI.ix=null;
+AI.msgs.push({r:'a',t:tx('I read **'+d.name+'** ('+d.words+' words'+(d.secs.length>1?', '+d.secs.length+' parts':'')+'). Ask me a question or pick a skill above. I only answer from your documents.','Ich habe **'+d.name+'** gelesen ('+d.words+' Wörter'+(d.secs.length>1?', '+d.secs.length+' Teile':'')+'). Stelle mir eine Frage oder wähle oben eine Fähigkeit. Ich antworte nur anhand deiner Dokumente.')})}
+catch(e){AI.err=tx('Couldn’t read ','Konnte nicht gelesen werden: ')+f.name+': '+e.message}}chat()}
+function ask(a){if(AI.busy)return;let sk=null,q='';
+if(a&&typeof a=='object')sk=a.skill;else q=((typeof a=='string'&&a)?a:($('#aq')||{}).value||'').trim();
+if(!sk&&!q)return;AI.draft='';AI.err='';
+if(!sk)sk=route(q);
+const label=a&&typeof a=='object'?SKL[sk][LG=='de'?1:0]:q;
+AI.msgs.push({r:'u',t:label,skill:!!(a&&typeof a=='object')});const ol=q?qlang(q):null,m={r:'a',t:'',ol};AI.msgs.push(m);AI.busy=1;chat();
+setTimeout(()=>{OL=ol;try{run(sk,q,m)}catch(e){m.t=tx('Something went wrong while reading your documents. Please try again.','Beim Lesen deiner Dokumente ist etwas schiefgelaufen. Bitte versuche es nochmals.')}OL=null;AI.busy=0;chat()},30)}
+const FC={len:25,left:1500,run:0,end:0,brk:0,subj:'',task:'',sid:''};
+P.focus=()=>{const s=FC.sid&&by('ses',FC.sid);return hd('Focus')+`<div class="card" style="background:var(--t2);text-align:center"><div class="row" style="justify-content:center">${[[25,0],[45,0],[60,0],[5,1]].map(([l,b])=>`<button class="pill" style="${FC.len==l&&FC.brk==b?'background:var(--pl);color:var(--onpl)':''}" data-a="fmode" data-i="${l}" data-j="${b}">${b?'Break ':''}${l} min</button>`).join('')}</div><div class="row" style="justify-content:center;margin-top:10px"><input id="fm" type="number" min="1" max="600" value="${FC.brk?25:FC.len}" style="width:90px" aria-label="Minutes"><button class="ic" data-a="fset">Set minutes</button></div><svg class="ring" width="220" height="220" viewBox="0 0 220 220"><circle cx="110" cy="110" r="90" stroke="var(--t1)"/><circle id="rg" cx="110" cy="110" r="90" stroke="var(--ac)" stroke-linecap="round" stroke-dasharray="565.5" style="transform:rotate(-90deg);transform-origin:center;stroke-dashoffset:${565.5*(1-FC.left/(FC.len*60))}"/><text id="tm" x="110" y="122" text-anchor="middle" font-size="42" font-family="DM Serif Display,serif" fill="var(--ink)">${hs(FC.left)}</text></svg><div class="row" style="justify-content:center">${FC.run?bt('fpause','Pause'):bt('fstart',FC.left<FC.len*60?'Resume':'Start')}${ib('freset','Reset')}</div>${s?`<p class="mut">Linked to planner: <b>${esc(s.topic)}</b></p>`:''}<div class="flt"><select id="fs" aria-label="Subject">${so().map(([a,b])=>`<option value="${a}"${FC.subj==a?' selected':''}>${esc(b)}</option>`).join('')}</select><input id="ft" placeholder="Working on…" value="${esc(FC.task)}"></div><small>${fh(md()[T()]||0)} today · every 1 h of focus grows your plant 🌱</small></div>`};
+P.garden=()=>{const h=hrs(),sm={},th=[1,2,4,8,15,30,60].find(x=>x>h);S.foc.forEach(f=>sm[f.subj]=(sm[f.subj]||0)+f.m);
+return hd('Garden')+`<div class="card" style="background:var(--t3)">${plant(260)}<h2 style="text-align:center;margin-top:8px">${STG[stage(h)]}</h2><p style="text-align:center;margin:0">${h} h focused · ${vis()} days visited</p>${bar(mins()%60/60*100)}<small>${60-mins()%60} min until it grows</small></div><div class="card"><h2>How it grows</h2><p>🌱 Every 1 hour of focus makes your plant bigger. It keeps growing the more you focus, for as long as you use Lumora.</p><p>🍃 Every day you visit adds a leaf.</p><p class="mut">Next stage: ${th?'at '+th+' h':'you reached the top!'}</p></div>
+
+<div class="card"><h2>By subject</h2>${Object.keys(sm).length?Object.entries(sm).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<p style="margin:6px 0">${esc(sn(k))} · ${fh(v)}</p>`).join(''):'<p class="mut">Finish a focus session to see this.</p>'}</div>`};
+P.set=()=>hd('Settings')+`<div class="card"><p><b>${esc(S.name)}</b><br><span class="mut">Account: ${esc(U)}</span></p><div class="row" style="justify-content:flex-start">${ib('pedit','Change name')}${ib('out','Sign out')}${ib('reset','Delete my data')}</div></div>`;
+const sesForm=x=>form(x?'Edit session':'New session',[['subj','Subject','select',so()],['topic','What','text'],['date','Date','date'],['st','Start','time'],['len','Minutes','number']],x?{...x,st:hm(x.start)}:{date:T(),st:'16:00',len:45},o=>{const l=+o.len,s=mn(o.st||'0:0');if(!o.topic.trim()||!o.date||!(l>0))return'Add what, date and minutes.';if(o.date<T()&&!(x&&x.date==o.date))return'That date is in the past.';if(s+l>1440)return'Must end before midnight.';if(clash(o.date,s,l,x?.id))return'Overlaps another session.';up(S.ses,x?.id,{subj:o.subj,topic:o.topic.trim(),date:o.date,start:s,len:l,done:x?.done||false})});
+const taskForm=x=>form(x?'Edit task':'New task',[['title','Task','text'],['subj','Subject','select',so()],['due','Due date','date'],['pri','Priority','select',[[3,'High'],[2,'Medium'],[1,'Low']]]],x||{pri:2},o=>{if(!o.title.trim())return'Add a title.';up(S.task,x?.id,{title:o.title.trim(),subj:o.subj,due:o.due,pri:+o.pri,st:x?.st||0})});
+const exForm=x=>form(x?'Edit exam':'New exam',[['title','Exam','text'],['subj','Subject','select',so()],['date','Date','date']],x,o=>{if(!o.title.trim()||!o.date)return'Add a name and date.';up(S.exam,x?.id,o)});
+const subForm=x=>form(x?'Edit subject':'New subject',[['name','Name','text'],['c','Colour','select',['Pink','Purple','Gold','Blue','Green','Orange'].map((n,i)=>[i,n])],['pf','Counts for Pluspoints','select',[[1,'Yes'],[0,'No (e.g. Sport)']]]],x||{c:S.sub.length%6,pf:1},o=>{if(!o.name.trim())return'Add a name.';x?Object.assign(x,{name:o.name.trim(),c:+o.c,pf:+o.pf}):S.sub.push({id:uid(),name:o.name.trim(),c:+o.c,pf:+o.pf})});
+const fin=()=>{FC.run=0;let msg='Break over.';if(!FC.brk){S.foc.push({d:T(),m:FC.len,subj:FC.subj,task:FC.task,sid:FC.sid});const s=FC.sid&&by('ses',FC.sid);if(s)s.done=true;FC.sid='';save();msg=`+${FC.len} min studied 🌱`}FC.left=FC.len*60;const d=$('#dlg');if(!d.open){d.innerHTML=`<h3>${msg}</h3><br><div class="row"><button class="btn" data-a="close">OK</button></div>`;d.showModal()}go()};
+setInterval(()=>{if(!FC.run)return;FC.left=Math.max(0,Math.round((FC.end-Date.now())/1000));upd();if(!FC.left)fin()},250);
+const toFocus=(o)=>{Object.assign(FC,{run:0,brk:0,sid:'',...o});FC.left=FC.len*60;R='focus';go()};
+const A={start:()=>{V=U?'app':'auth';go()},amode:i=>{AU=i;go()},home:()=>{V='land';go()},nav:k=>{R=k;go();scrollTo(0,0)},close:()=>$('#dlg').close(),
+setn:()=>{const v=$('#o1').value.trim();if(!v){$('#oe').textContent='Add your name.';return}S.name=v;save();V='app';R='today';go()},
+signin:()=>{$('#dlg').innerHTML=`<h3>Sign in</h3><br><label>Name<input id="an" autocomplete="username"></label><label>Password<input id="ap" type="password" autocomplete="current-password"></label><p class="err" id="ae"></p><div class="row"><button class="btn ghost" data-a="auth" data-i="new">Create account</button><button class="btn" data-a="auth" data-i="in">Sign in</button></div>`;$('#dlg').showModal()},
+auth:async m=>{const n=$('#an').value.trim(),p=$('#ap').value,e=$('#ae');if(m=='new'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(n)){e.textContent='Enter a valid email address.';return}if(m=='new'&&$('#ap2')&&$('#ap2').value!=p){e.textContent='Passwords don’t match.';return}if(!n||p.length<4){e.textContent='Enter your email and a password (4+ characters).';return}
+const bt=document.querySelector('[data-a=auth][data-i="'+m+'"]'),bt0=bt&&bt.textContent;if(bt){bt.disabled=true;bt.textContent='Please wait…'}e.textContent='';
+try{let acc={};try{acc=JSON.parse(ls('lm_acc')||'{}')}catch(x){}const h=await hh(p),k=n.toLowerCase(),C=window.LMC,nm=($('#anm')&&$('#anm').value.trim())||n.split('@')[0];
+if(m=='new'){const d=Object.assign(D0(),{name:nm});let r={err:'net'};if(C)r=await C.signup(k,p,d);
+if(r.err=='exists'||(!C&&acc[k])){e.textContent='This email already has an account. Try signing in.';return}
+if(!r.ok){if(!window.LOCALOK){window.LOCALOK=1;e.textContent='Cloud sync isn’t reachable, so this account would only work on this device. Press the button again to continue anyway.';return}}
+acc[k]=h;ls('lm_acc',JSON.stringify(acc));U=k;S=d;save()}
+else{let r={err:'net'};if(C)r=await C.signin(k,p);
+if(r.ok){U=k;ls('lm_d_'+k,JSON.stringify(r.d));if(r.p){if(r.p.lg=='de'||r.p.lg=='en'){LG=r.p.lg;ls('lm_lg',LG)}if(TH.some(t=>t[0]==r.p.th)){TM=r.p.th;ls('lm_th',TM)}}S=load();acc[k]=h;ls('lm_acc',JSON.stringify(acc))}
+else if(r.err=='wrong'){e.textContent='Wrong email or password.';return}
+else{if(!acc[k]||acc[k]!=h){e.textContent=r.err=='net'?'Couldn’t reach the server. Check your connection and try again.':'Wrong email or password.';return}
+U=k;S=load();S.name=S.name||n.split('@')[0];if(r.err=='none'&&C)await C.signup(k,p,S)}}
+ls('lm_u',U);save();$('#dlg').close();V='app';R='today';go()}finally{if(bt){bt.disabled=false;if(bt0)bt.textContent=bt0}}},
+out:()=>{window.LMC&&LMC.signout();U='';ls('lm_u',null);S=load();V='land';go()},
+sadd:()=>sesForm(),sedit:i=>sesForm(by('ses',i)),sdel:i=>conf('Delete this session?',()=>S.ses=S.ses.filter(x=>x.id!=i)),
+sdone:i=>{const s=by('ses',i);s.done=true;S.foc.push({d:T(),m:s.len,subj:s.subj,task:s.topic,sid:s.id});save();go()},
+sfocus:i=>{const s=by('ses',i);toFocus({subj:s.subj,task:s.topic,sid:s.id,len:Math.max(1,s.len)})},
+tadd:()=>taskForm(),ted:i=>taskForm(by('task',i)),tdel:i=>conf('Delete this task?',()=>S.task=S.task.filter(x=>x.id!=i)),
+tst:i=>{const x=by('task',i);x.st=((x.st||0)+1)%3;save();go()},tfocus:i=>{const x=by('task',i);toFocus({subj:x.subj,task:x.title,len:25})},
+exadd:()=>exForm(),exedit:i=>exForm(by('exam',i)),exdel:i=>conf('Delete this exam?',()=>S.exam=S.exam.filter(x=>x.id!=i)),
+subadd:()=>subForm(),subedit:i=>subForm(by('sub',i)),subdel:i=>conf('Delete this subject?',()=>{S.sub=S.sub.filter(x=>x.id!=i);[...S.ses,...S.task,...S.exam,...S.foc].forEach(x=>{if(x.subj==i)x.subj=''});S.gr=S.gr.filter(g=>g.subj!=i)}),
+fmode:(l,b)=>{FC.len=+l;FC.brk=+b;FC.left=FC.len*60;FC.run=0;go()},fset:()=>{const v=Math.round(+$('#fm').value);if(!(v>=1&&v<=600))return;FC.len=v;FC.brk=0;FC.left=v*60;FC.run=0;go()},
+fstart:()=>{FC.subj=$('#fs').value;FC.task=$('#ft').value;FC.end=Date.now()+FC.left*1000;FC.run=1;go()},fpause:()=>{FC.run=0;go()},freset:()=>{FC.run=0;FC.left=FC.len*60;go()},
+gadd:()=>grForm(),ged:i=>grForm(by('gr',i)),gdel:i=>conf('Delete this grade?',()=>S.gr=S.gr.filter(x=>x.id!=i)),adel:i=>{AI.docs.splice(+i,1);AI.ix=null;chat()},asend:()=>ask(),apre:i=>ask({skill:i}),apick:()=>$('#aif').click(),aclear:()=>{AI.msgs=[];AI.seed=0;chat()},qa:(i,j)=>quizPick(i,j),
+pedit:()=>form('Change name',[['name','Name','text']],S,o=>{if(!o.name.trim())return'Add a name.';S.name=o.name.trim()}),
+reset:()=>conf('Delete ALL your data?',()=>{const n=S.name;S=D0();S.name=n})};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&A[b.dataset.a])A[b.dataset.a](b.dataset.i,b.dataset.j)});
+document.addEventListener('dragover',e=>{if(R=='ai')e.preventDefault()});document.addEventListener('drop',e=>{if(R=='ai'&&e.dataTransfer&&e.dataTransfer.files.length){e.preventDefault();addDocs([...e.dataTransfer.files])}});
+document.addEventListener('keydown',e=>{if((e.target.id=='ap'||e.target.id=='ap2')&&e.key=='Enter')A.auth(AU);if(e.target.id=='aq'&&e.key=='Enter'&&!e.shiftKey){e.preventDefault();ask()}});
+document.addEventListener('input',e=>{if(e.target.id=='aq')AI.draft=e.target.value;if(e.target.id=='ft')FC.task=e.target.value});
+document.addEventListener('change',e=>{const t=e.target;if(t.id=='lg'){LG=t.value=='de'?'de':'en';ls('lm_lg',LG);go()}if(t.id=='th'){TM=t.value;ls('lm_th',TM);document.documentElement.dataset.theme=TM}if(t.id=='fs')FC.subj=t.value;if(t.id=='prr'){S.pr.rnd=t.value;save();go()}if(t.id=='prm'){S.pr.mw=+t.value;save();go()}if(t.id=='aif'){addDocs([...t.files]);t.value=''}});
+// ---- English / German: the app is written in English; German text is applied on screen ----
+(()=>{
+const DE={
+'Today':'Heute','Planner':'Planer','Tasks':'Aufgaben','Exams':'Prüfungen','Subjects':'Fächer','Focus':'Fokus','Garden':'Garten','Pluspoints':'Pluspunkte','Lumora AI':'Lumora KI','Settings':'Einstellungen',
+'Sign out':'Abmelden','Organize your':'Organisiere deine','Homework':'Hausaufgaben','Deadlines':'Fristen','Projects':'Projekte','Plan. Focus. Grow your garden.':'Plane. Fokussiere. Lass deinen Garten wachsen.','Open Lumora':'Lumora öffnen','Get started':'Los geht’s',
+'Welcome ✦':'Willkommen ✦','What’s your name?':'Wie heisst du?','Continue':'Weiter','Back':'Zurück','Add your name.':'Gib deinen Namen ein.',
+'Sign in':'Anmelden','Please wait…':'Bitte warten…','Couldn’t reach the server. Check your connection and try again.':'Server nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.','Cloud sync isn’t reachable, so this account would only work on this device. Press the button again to continue anyway.':'Die Cloud-Synchronisierung ist nicht erreichbar, dieses Konto würde nur auf diesem Gerät funktionieren. Drücke die Schaltfläche erneut, um trotzdem fortzufahren.','Please sign in again to sync your progress.':'Bitte melde dich erneut an, um deinen Fortschritt zu synchronisieren.','Sign up':'Registrieren','Your name':'Dein Name','Email':'E-Mail','Password':'Passwort','Repeat password':'Passwort wiederholen','Create account':'Konto erstellen',
+'Enter a valid email address.':'Gib eine gültige E-Mail-Adresse ein.','Passwords don’t match.':'Die Passwörter stimmen nicht überein.','Enter your email and a password (4+ characters).':'Gib deine E-Mail und ein Passwort ein (mindestens 4 Zeichen).','This email already has an account. Try signing in.':'Für diese E-Mail gibt es schon ein Konto. Melde dich an.','Wrong email or password.':'Falsche E-Mail oder falsches Passwort.',
+'day streak':'Tage in Folge','studied today':'heute gelernt','tasks done':'Aufgaben erledigt','Start focus':'Fokus starten','Nothing planned.':'Nichts geplant.','Add session':'Lernblock hinzufügen','Add task':'Aufgabe hinzufügen','Coming up':'Demnächst','No deadlines.':'Keine Fristen.','Task':'Aufgabe','Exam':'Prüfung','today':'heute','Done':'Erledigt','Done ✓':'Erledigt ✓','Edit':'Bearbeiten',
+'Seed':'Samen','Sprout':'Spross','Seedling':'Setzling','Young plant':'Junge Pflanze','Bush':'Busch','Blooming plant':'Blühende Pflanze','Flowering tree':'Blühender Baum','Giant tree':'Riesenbaum',
+'Nothing planned for 2 weeks.':'Für die nächsten 2 Wochen ist nichts geplant.','Due':'Fällig',
+'Overdue':'Überfällig','Doing':'In Arbeit','To do':'Offen','No tasks yet.':'Noch keine Aufgaben.','High':'Hoch','Medium':'Mittel','Low':'Niedrig','New task':'Neue Aufgabe','Edit task':'Aufgabe bearbeiten','Subject':'Fach','Due date':'Fällig am','Priority':'Priorität','Save':'Speichern','Cancel':'Abbrechen','Add a title.':'Gib einen Titel ein.','General':'Allgemein',
+'Add exam':'Prüfung hinzufügen','No exams yet.':'Noch keine Prüfungen.','Finished':'Vorbei','New exam':'Neue Prüfung','Edit exam':'Prüfung bearbeiten','Date':'Datum','Add a name and date.':'Gib einen Namen und ein Datum ein.',
+'Add subject':'Fach hinzufügen','Add your subjects.':'Füge deine Fächer hinzu.','New subject':'Neues Fach','Edit subject':'Fach bearbeiten','Name':'Name','Colour':'Farbe','Pink':'Rosa','Purple':'Violett','Gold':'Gold','Blue':'Blau','Green':'Grün','Orange':'Orange','Counts for Pluspoints':'Zählt für Pluspunkte','Yes':'Ja','No (e.g. Sport)':'Nein (z. B. Sport)','Add a name.':'Gib einen Namen ein.',
+'Delete this subject?':'Dieses Fach löschen?','Delete this session?':'Diesen Lernblock löschen?','Delete this task?':'Diese Aufgabe löschen?','Delete this exam?':'Diese Prüfung löschen?','Delete this grade?':'Diese Note löschen?','Delete ALL your data?':'ALLE deine Daten löschen?','Keep it':'Behalten','Yes, delete':'Ja, löschen',
+'New session':'Neuer Lernblock','Edit session':'Lernblock bearbeiten','What':'Was','Start':'Start','Minutes':'Minuten','Add what, date and minutes.':'Gib Thema, Datum und Minuten ein.','That date is in the past.':'Dieses Datum liegt in der Vergangenheit.','Must end before midnight.':'Muss vor Mitternacht enden.','Overlaps another session.':'Überschneidet sich mit einem anderen Lernblock.',
+'Set minutes':'Minuten setzen','Pause':'Pause','Resume':'Fortsetzen','Reset':'Zurücksetzen','Working on…':'Woran arbeitest du?','Linked to planner:':'Mit Planer verknüpft:','Break over.':'Pause vorbei.','OK':'OK','Your plant':'Deine Pflanze',
+'How it grows':'So wächst sie','🌱 Every 1 hour of focus makes your plant bigger. It keeps growing the more you focus, for as long as you use Lumora.':'🌱 Jede Stunde Fokus lässt deine Pflanze grösser werden. Sie wächst weiter, je mehr du dich konzentrierst, solange du Lumora benutzt.','🍃 Every day you visit adds a leaf.':'🍃 Jeder Tag, an dem du vorbeischaust, bringt ein Blatt.','By subject':'Nach Fach','Finish a focus session to see this.':'Schliesse eine Fokus-Sitzung ab, um das zu sehen.','Next stage: you reached the top!':'Nächste Stufe: Du hast die Spitze erreicht!','every 1 h of focus grows your plant 🌱':'jede Stunde Fokus lässt deine Pflanze wachsen 🌱',
+'Add grade':'Note hinzufügen','Add your subjects first.':'Füge zuerst deine Fächer hinzu.','not counted':'zählt nicht','New grade':'Neue Note','Edit grade':'Note bearbeiten','Exam / note (optional)':'Prüfung / Notiz (optional)','Grade (1–6)':'Note (1–6)','Weight':'Gewicht','Grade must be between 1 and 6.':'Die Note muss zwischen 1 und 6 liegen.','Weight must be above 0.':'Das Gewicht muss über 0 liegen.',
+'Plus points':'Pluspunkte','Minus points':'Minuspunkte','(counted double)':'(doppelt gezählt)','Each grade is rounded to the nearest half. Points above 4 count once. Points below 4 count double.':'Jede Note wird auf die nächste halbe Note gerundet. Punkte über 4 zählen einfach. Punkte unter 4 zählen doppelt.',
+'Change name':'Namen ändern','Delete my data':'Meine Daten löschen',
+'Clear chat':'Chat leeren','Study with your documents':'Lerne mit deinen Dokumenten','Add a PDF, Word or text file. Lumora AI reads it on your device and answers only from what is in your documents.':'Füge eine PDF-, Word- oder Textdatei hinzu. Lumora KI liest sie auf deinem Gerät und antwortet nur mit dem, was in deinen Dokumenten steht.',
+'Summary':'Zusammenfassung','Key terms':'Schlüsselbegriffe','Explain simply':'Einfach erklärt','Analysis':'Analyse','Quiz':'Quiz','Flashcards':'Lernkarten','Add document':'Dokument hinzufügen','Ask about your documents…':'Frage zu deinen Dokumenten …','Send':'Senden','Your question':'Deine Frage','Remove':'Entfernen','Upload documents':'Dokumente hochladen',
+'No document yet. Add a PDF, Word or text file with the paperclip.':'Noch kein Dokument. Füge mit der Büroklammer eine PDF-, Word- oder Textdatei hinzu.','Ask a question about your documents or pick a skill above.':'Stelle eine Frage zu deinen Dokumenten oder wähle oben eine Fähigkeit.','Your documents stay in this browser tab. Nothing is uploaded.':'Deine Dokumente bleiben in diesem Browser-Tab. Es wird nichts hochgeladen.',
+'Language':'Sprache','Theme':'Design'};
+const TN={Rose:'Rosa',Blue:'Blau',Green:'Grün',Light:'Hell',Dark:'Dunkel'};
+const dur=d=>d.replace(/(\d+) h (\d+) min/,'$1 Std. $2 Min.').replace(/^(\d+) h$/,'$1 Std.').replace(/^(\d+) min$/,'$1 Min.');
+const PAT=[
+[/^Good (morning|afternoon|evening), ([\s\S]*)$/,(p,n)=>'Guten '+({morning:'Morgen',afternoon:'Tag',evening:'Abend'})[p]+', '+n],
+[/^Hi, ([\s\S]*)$/,n=>'Hallo, '+n],[/^Account: ([\s\S]*)$/,e=>'Konto: '+e],
+[/^🎨 (.+)$/,n=>'🎨 '+(TN[n]||n)],
+[/^(\d+) days? to go$/,n=>n=='1'?'Noch 1 Tag':'Noch '+n+' Tage'],
+[/^in (\d+) d$/,n=>'in '+n+' T'],[/^exam in (\d+) d$/,n=>'Prüfung in '+n+' T'],
+[/^(\d+) open tasks?$/,n=>n+(n=='1'?' offene Aufgabe':' offene Aufgaben')],
+[/^(Break )?(\d+) min$/,(b,n)=>(b?'Pause ':'')+n+' Min.'],
+[/^(\d+) min until it grows$/,n=>'noch '+n+' Min. bis zum Wachsen'],
+[/^(\d+ h \d+ min|\d+ h|\d+ min) (studied|today|focused)$/,(d,w)=>dur(d)+' '+({studied:'gelernt',today:'heute',focused:'fokussiert'})[w]],
+[/^(\d+) days? visited$/,n=>n+(n=='1'?' Tag besucht':' Tage besucht')],
+[/^Next stage: at (\d+) h$/,n=>'Nächste Stufe: ab '+n+' Std.'],
+[/^\+(\d+) min studied 🌱$/,n=>'+'+n+' Min. gelernt 🌱']];
+function seg(s){const k=s.trim();if(!k)return s;let o=DE[k];if(o===undefined)for(const[re,f]of PAT){const m=k.match(re);if(m){o=f(...m.slice(1));break}}return o===undefined?s:s.replace(k,()=>o)}
+function trNode(s){const w=seg(s);if(w!==s)return w;return s.includes(' · ')?s.split(' · ').map(seg).join(' · '):s}
+const skip=n=>{const e=n.nodeType==1?n:n.parentElement;return!e||!!e.closest('.msg,textarea,script,style')};
+const tn=n=>{if(LG!='de'||skip(n))return;const v=n.nodeValue;if(!v||!v.trim())return;const r=trNode(v);if(r!==v)n.nodeValue=r};
+const at=e=>{['placeholder','aria-label','title'].forEach(a=>{if(e.hasAttribute&&e.hasAttribute(a)){const v=e.getAttribute(a),r=trNode(v);if(r!==v)e.setAttribute(a,r)}})};
+const walk=n=>{if(n.nodeType==3)return tn(n);if(n.nodeType!=1||skip(n))return;at(n);n.childNodes.forEach(walk)};
+const mo=new MutationObserver(ms=>{if(LG!='de')return;ms.forEach(m=>{if(m.type=='characterData')tn(m.target);else if(m.type=='attributes'){if(!skip(m.target))at(m.target)}else m.addedNodes.forEach(walk)})});
+[$('#app'),$('#dlg')].forEach(e=>mo.observe(e,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['placeholder','aria-label','title']}));
+})();
+
+go();
+setInterval(()=>{const e=$('#rw');if(!e)return;ri=(ri+1)%RW.length;e.classList.add('out');setTimeout(()=>{const x=$('#rw');if(!x)return;x.textContent=RW[ri][0];x.style.color=RW[ri][1];x.classList.remove('out')},300)},3000);
+</script>
+<script>
+/* Lumora persistence. Mirrors the app's saved keys (accounts, sign-in, data, theme) into the
+   viewer's private space, so a reload finds them even when the browser drops local storage. */
+(()=>{
+const own=Object.prototype.hasOwnProperty;
+const kv={};
+let ref=null,ready=false,busy=false,dirty=false,off=false,timer=0;
+
+function flush(){
+  if(!ref||!ready||off)return;
+  if(busy){dirty=true;return}
+  clearTimeout(timer);
+  timer=setTimeout(async()=>{
+    busy=true;dirty=false;
+    try{await ref.set({kv:kv,saved:new Date().toISOString()})}
+    catch(e){if(e&&(e.code==='invalid_argument'||e.code==='revoked'||e.code==='not_granted'||e.code==='quota_exceeded'))off=true}
+    busy=false;
+    if(dirty&&!off)flush();
+  },800);
+}
+window.__lmSync=(k,v)=>{
+  if(!/^lm_/.test(k))return;
+  if(v===null||v===undefined)delete kv[k];else kv[k]=String(v);
+  flush();
+};
+function localKeys(){
+  const o={};
+  try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(/^lm_/.test(k)){const v=localStorage.getItem(k);if(v!==null)o[k]=v}}}catch(e){}
+  try{Object.keys(MEM).forEach(k=>{if(/^lm_/.test(k)&&!own.call(o,k))o[k]=MEM[k]})}catch(e){}
+  return o;
+}
+
+(async()=>{
+  try{
+    if(!window.claude)return;
+    const[db,user]=await Promise.all([claude.use('db'),claude.use('user')]);
+    if(!db||!user)return;
+    if(user.can&&user.can('data.write')===false)return;
+    const id=await user.id();
+    if(!id)return;
+    ref=db.collection('data/users/'+id).doc('lumora');
+    const snap=await ref.get();
+    const remote=(snap.exists&&snap.data()&&snap.data().kv)||{};
+    const local=localKeys();
+    Object.assign(kv,remote,local);
+    const restored=Object.keys(remote).filter(k=>!own.call(local,k)&&typeof remote[k]==='string');
+    ready=true;
+    restored.forEach(k=>ls(k,remote[k]));
+    if(restored.length||Object.keys(local).some(k=>remote[k]!==local[k]))flush();
+    if(!restored.length)return;
+
+    const nu=ls('lm_u')||'';
+    let langChanged=false;
+    if(restored.includes('lm_lg')){const g=ls('lm_lg');if((g==='de'||g==='en')&&g!==LG){LG=g;langChanged=true}}
+    if(restored.includes('lm_th')){
+      const t=ls('lm_th');
+      if(TH.some(x=>x[0]===t)){TM=t;document.documentElement.dataset.theme=TM}
+    }
+    if(restored.includes('lm_u')&&nu&&!U){
+      U=nu;S=load();V='app';R='today';go();
+    }else if(U&&restored.includes('lm_d_'+U)){
+      S=load();
+      if(V==='app')go();
+    }
+    if(langChanged)go();
+  }catch(e){}
+})();
+})();
+</script>
+<script>
+/* Lumora cloud accounts. Account + progress live in the shared database, encrypted with a key
+   derived from the password (PBKDF2 -> AES-GCM). Same email + password works on any device. */
+(()=>{
+const enc=new TextEncoder(),dec=new TextDecoder();
+const b64=u=>{u=new Uint8Array(u);let s='';for(let i=0;i<u.length;i+=32768)s+=String.fromCharCode.apply(null,u.subarray(i,i+32768));return btoa(s)};
+const unb=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const hex=u=>[...new Uint8Array(u)].map(x=>x.toString(16).padStart(2,'0')).join('');
+const sha=async s=>hex(await crypto.subtle.digest('SHA-256',typeof s=='string'?enc.encode(s):s));
+const lsg=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const lss=(k,v)=>{try{v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}};
+let col=null,rdy=null,sess=null,timer=0,busy=false,dirty=false,adopting=false,changed=false,lastRemote=+(lsg('lk_rt')||0);
+
+function ready(){
+  if(rdy)return rdy;
+  rdy=(async()=>{
+    try{
+      if(!window.claude||!window.crypto||!crypto.subtle)return false;
+      const db=await claude.use('db');
+      if(!db)return false;
+      col=db.collection('lumora_acct');
+      return true;
+    }catch(e){return false}
+  })();
+  rdy.then(v=>{if(!v)rdy=null});
+  return rdy;
+}
+async function derive(pw,salt){
+  const km=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveBits']);
+  const bits=new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:salt,iterations:200000},km,512));
+  return{ver:await sha(bits.slice(0,32)),raw:bits.slice(32)};
+}
+const imp=raw=>crypto.subtle.importKey('raw',raw,'AES-GCM',false,['encrypt','decrypt']);
+async function pipe(bytes,T){
+  const st=new Blob([bytes]).stream().pipeThrough(new T('gzip'));
+  return new Uint8Array(await new Response(st).arrayBuffer());
+}
+async function seal(key,obj){
+  const iv=crypto.getRandomValues(new Uint8Array(12));
+  let raw=enc.encode(JSON.stringify(obj)),z=0;
+  if(window.CompressionStream){try{raw=await pipe(raw,CompressionStream);z=1}catch(e){raw=enc.encode(JSON.stringify(obj));z=0}}
+  const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv:iv},key,raw));
+  const o=new Uint8Array(12+ct.length);o.set(iv);o.set(ct,12);
+  return{blob:b64(o),z:z};
+}
+async function open(key,blob,z){
+  const u=unb(blob);
+  let raw=new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:u.slice(0,12)},key,u.slice(12)));
+  if(z)raw=await pipe(raw,DecompressionStream);
+  return JSON.parse(dec.decode(raw));
+}
+const prefs=()=>({lg:LG,th:TM});
+function setSess(m,key){sess={u:m.u,eid:m.eid,key:key};lss('lk_s',JSON.stringify(m))}
+const eidOf=k=>sha('lumora:acct:'+k);
+
+async function signup(k,pw,d){
+  if(!await ready())return{err:'net'};
+  try{
+    const eid=await eidOf(k),ref=col.doc(eid),snap=await ref.get();
+    if(snap.exists)return{err:'exists'};
+    const salt=crypto.getRandomValues(new Uint8Array(16)),dv=await derive(pw,salt),key=await imp(dv.raw),t=Date.now();
+    const sl=await seal(key,{t:t,d:d,p:prefs()});
+    await ref.set({v:1,salt:b64(salt),ver:dv.ver,blob:sl.blob,z:sl.z,t:t});
+    setSess({u:k,eid:eid,raw:b64(dv.raw)},key);
+    lastRemote=t;lss('lk_rt',String(t));lss('lk_lt',String(t));
+    return{ok:true};
+  }catch(e){return{err:'net'}}
+}
+async function signin(k,pw){
+  if(!await ready())return{err:'net'};
+  try{
+    const eid=await eidOf(k),snap=await col.doc(eid).get();
+    if(!snap.exists)return{err:'none'};
+    const o=snap.data(),dv=await derive(pw,unb(o.salt));
+    if(dv.ver!==o.ver)return{err:'wrong'};
+    const key=await imp(dv.raw),x=await open(key,o.blob,o.z);
+    setSess({u:k,eid:eid,raw:b64(dv.raw)},key);
+    lastRemote=o.t;lss('lk_rt',String(o.t));lss('lk_lt',String(o.t));
+    return{ok:true,d:x.d,p:x.p};
+  }catch(e){return{err:'net'}}
+}
+
+function schedule(){if(!sess)return;clearTimeout(timer);timer=setTimeout(push,1200)}
+async function push(){
+  clearTimeout(timer);
+  const s=sess;
+  if(!s||!col||U!==s.u||!changed)return;
+  if(busy){dirty=true;return}
+  busy=true;dirty=false;changed=false;
+  try{
+    const d=JSON.parse(ls('lm_d_'+s.u)||'null');
+    if(d){
+      const t=Date.now(),sl=await seal(s.key,{t:t,d:d,p:prefs()});
+      await col.doc(s.eid).update({blob:sl.blob,z:sl.z,t:t});
+      lastRemote=t;lss('lk_rt',String(t));
+    }
+  }catch(e){changed=true}
+  busy=false;
+  if(dirty&&sess)push();
+}
+function adopt(x,t){
+  adopting=true;
+  try{
+    ls('lm_d_'+U,JSON.stringify(x.d));
+    lastRemote=t;lss('lk_rt',String(t));lss('lk_lt',String(t));
+    S=load();
+    const p=x.p||{};
+    if(p.lg=='de'||p.lg=='en'){LG=p.lg;ls('lm_lg',LG)}
+    if(TH.some(a=>a[0]==p.th)){TM=p.th;ls('lm_th',TM);document.documentElement.dataset.theme=TM}
+    const dlg=document.getElementById('dlg');
+    if(V=='app'&&!(dlg&&dlg.open))go();
+  }finally{adopting=false}
+}
+async function pull(){
+  const s=sess;
+  if(!s||!col||U!==s.u||busy||adopting||changed)return;
+  try{
+    const snap=await col.doc(s.eid).get();
+    if(!snap.exists)return;
+    const o=snap.data(),ll=+(lsg('lk_lt')||0);
+    if(o.t>lastRemote&&o.t>ll){adopt(await open(s.key,o.blob,o.z),o.t)}
+    else if(ll>lastRemote){changed=true;schedule()}
+  }catch(e){}
+}
+function signout(){
+  if(sess&&changed)push();
+  clearTimeout(timer);
+  sess=null;lss('lk_s',null);lss('lk_rt',null);lss('lk_lt',null);lastRemote=0;
+}
+
+/* keep every local save in sync with the account */
+const w0=window.__lmSync;
+window.__lmSync=(k,v)=>{
+  try{w0&&w0(k,v)}catch(e){}
+  if(adopting||!sess)return;
+  if(k==='lm_d_'+sess.u||k==='lm_lg'||k==='lm_th'){lss('lk_lt',String(Date.now()));changed=true;schedule()}
+};
+
+/* on load: reuse the saved key, or ask for a fresh sign-in if this device has none */
+async function checkKey(){
+  if(sess&&U===sess.u)return;
+  if(U&&!sess){
+    U='';ls('lm_u',null);S=load();V='auth';AU='in';go();
+    const e=document.getElementById('ae');if(e)e.textContent='Please sign in again to sync your progress.';
+  }
+}
+(async()=>{
+  if(!await ready())return;
+  try{
+    const m=JSON.parse(lsg('lk_s')||'null');
+    if(m&&m.u&&m.raw&&m.eid)sess={u:m.u,eid:m.eid,key:await imp(unb(m.raw))};
+  }catch(e){sess=null}
+  await checkKey();
+  setTimeout(checkKey,2500);
+  if(sess)pull();
+})();
+document.addEventListener('visibilitychange',()=>{if(document.hidden){if(changed)push()}else pull()});
+addEventListener('pagehide',()=>{if(changed)push()});
+setInterval(()=>{if(!document.hidden)pull()},45000);
+
+window.LMC={ready:ready,signup:signup,signin:signin,signout:signout};
+})();
+</script>
+<script>
+/* Lumora usage tracking. One small record per signed-in Claude viewer.
+   Never blocks or changes the app: every call is wrapped and fails silently. */
+(()=>{
+const clone=o=>JSON.parse(JSON.stringify(o));
+const iso=()=>new Date().toISOString();
+const dev=()=>innerWidth<800?'mobile':'desktop';
+const sget=k=>{try{return sessionStorage.getItem(k)}catch(e){return null}};
+const sset=(k,v)=>{try{sessionStorage.setItem(k,v)}catch(e){}};
+let st=null,ref=null,timer=0,busy=false,dirty=false,off=false,dead=false,visited=false;
+const pend=[];
+
+function flush(){
+  if(!ref||!st||off)return;
+  if(busy){dirty=true;return}
+  clearTimeout(timer);
+  timer=setTimeout(async()=>{
+    busy=true;dirty=false;
+    try{await ref.set(st)}catch(e){if(e&&(e.code==='invalid_argument'||e.code==='revoked'||e.code==='not_granted'))off=true}
+    busy=false;
+    if(dirty&&!off)flush();
+  },1500);
+}
+function today(){
+  const d=T();
+  const x=st.days[d]||(st.days[d]={v:0,l:0,f:0,s:0,p:{}});
+  if(!x.p)x.p={};
+  return x;
+}
+function rec(k,page){
+  if(!st||off)return;
+  try{
+    const x=today();
+    if(k==='page'){x.p[page]=(x.p[page]||0)+1}
+    else{
+      x[{visit:'v',login:'l',fail:'f',signup:'s'}[k]]++;
+      st.ev.push({t:iso(),k:k,d:dev()});
+      if(st.ev.length>60)st.ev=st.ev.slice(-60);
+    }
+    st.last=iso();st.dev=dev();
+    const keys=Object.keys(st.days).sort();
+    if(keys.length>180)keys.slice(0,keys.length-180).forEach(d=>delete st.days[d]);
+    flush();
+  }catch(e){}
+}
+function track(k,page){
+  if(st)rec(k,page);
+  else if(!dead)pend.push([k,page]);
+}
+function visit(){
+  if(visited||location.hash==='#admin'||sget('lm_vs'))return;
+  visited=true;sset('lm_vs','1');
+  track('visit');
+}
+
+(async()=>{
+  try{
+    if(!window.claude)throw 0;
+    const[db,user]=await Promise.all([claude.use('db'),claude.use('user')]);
+    if(!db||!user)throw 0;
+    if(user.can&&user.can('data.write')===false)throw 0;
+    const id=await user.id();
+    if(!id)throw 0;
+    ref=db.collection('visitors').doc(id);
+    const s=await ref.get();
+    st=s.exists?clone(s.data()):{};
+    st.first=st.first||iso();
+    st.days=st.days||{};
+    st.ev=Array.isArray(st.ev)?st.ev:[];
+    pend.splice(0).forEach(a=>rec(a[0],a[1]));
+  }catch(e){dead=true;pend.length=0}
+})();
+
+/* hook the app's own actions, keeping their behaviour exactly as it was */
+try{
+  const nav0=A.nav;
+  if(typeof nav0==='function'){
+    A.nav=function(k){
+      const r=nav0.apply(this,arguments);
+      try{if(/^[a-z]{1,12}$/.test(String(k)))track('page',String(k))}catch(e){}
+      return r;
+    };
+  }
+  const auth0=A.auth;
+  if(typeof auth0==='function'){
+    A.auth=async function(m){
+      const before=U;
+      const r=await auth0.apply(this,arguments);
+      try{
+        const err=(document.querySelector('#ae')||{}).textContent||'';
+        if(U&&U!==before)track(m==='new'?'signup':'login');
+        else if(m==='in'&&/wrong email or password|falsche e-mail/i.test(err))track('fail');
+      }catch(e){}
+      return r;
+    };
+  }
+}catch(e){}
+
+visit();
+addEventListener('hashchange',()=>{if(location.hash!=='#admin')visit()});
+})();
+</script>
+<script>
+/* Lumora admin view, shown when the page is opened with #admin. Reads the visitors collection (owner and editors only). */
+(()=>{
+const root=document.getElementById('adm'),app=document.getElementById('app');
+if(!root||!app)return;
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const N=x=>Number.isFinite(+x)?+x:0;
+const p2=n=>String(n).padStart(2,'0');
+const dstr=d=>d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
+const addD=(s,n)=>{const d=new Date(s+'T12:00:00');d.setDate(d.getDate()+n);return dstr(d)};
+const SEC={today:'Today',plan:'Planner',tasks:'Tasks',exams:'Exams',subj:'Subjects',focus:'Focus',garden:'Garden',pp:'Pluspoints',ai:'Lumora AI',set:'Settings'};
+const EVL={visit:'Visit',login:'Signed in',fail:'Failed sign-in',signup:'New account'};
+const lab=s=>{const d=new Date(s+'T12:00:00');return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})};
+const ago=t=>{const s=(Date.now()-new Date(t))/1000;if(!(s>=0))return'';if(s<60)return'just now';if(s<3600)return Math.floor(s/60)+' min ago';if(s<86400)return Math.floor(s/3600)+' h ago';return Math.floor(s/86400)+' d ago'};
+const when=t=>{const d=new Date(t);return isNaN(d)?'':d.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})};
+const short=id=>String(id).replace(/[^A-Za-z0-9]/g,'').slice(0,6)||'visitor';
+
+let rows=[],range=30,sample=false,sampleRows=null,state='load',started=false,locked=false,live=false,timerId=0;
+const data=()=>sample?(sampleRows||(sampleRows=makeSample())):rows;
+
+function makeSample(){
+  let s=11;const rnd=()=>(s=(s*16807)%2147483647)/2147483647;
+  const t=dstr(new Date()),keys=Object.keys(SEC),out=[];
+  for(let i=0;i<46;i++){
+    const off=Math.floor(rnd()*70),days={},ev=[];
+    for(let d=off;d>=0;d--){
+      if(d!==off&&rnd()>0.33)continue;
+      const key=addD(t,-d),v=1+Math.floor(rnd()*3),l=rnd()<0.6?1:0,f=rnd()<0.12?1:0,sg=d===off?1:0,p={};
+      for(let j=0;j<1+Math.floor(rnd()*4);j++){const k=keys[Math.floor(rnd()*keys.length)];p[k]=(p[k]||0)+1}
+      days[key]={v,l,f,s:sg,p};
+      const hh=8+Math.floor(rnd()*13),dv=rnd()<0.55?'mobile':'desktop';
+      ev.push({t:key+'T'+p2(hh)+':'+p2(Math.floor(rnd()*60))+':00',k:'visit',d:dv});
+      if(l)ev.push({t:key+'T'+p2(hh)+':'+p2(Math.floor(rnd()*60))+':30',k:'login',d:dv});
+      if(f)ev.push({t:key+'T'+p2(hh)+':'+p2(Math.floor(rnd()*60))+':10',k:'fail',d:dv});
+    }
+    const ks=Object.keys(days).sort();
+    out.push({id:'s'+(100000+Math.floor(rnd()*899999)).toString(36),data:{first:ks[0]+'T09:00:00',last:ks[ks.length-1]+'T12:00:00',dev:rnd()<0.55?'mobile':'desktop',days,ev}});
+  }
+  return out;
+}
+
+function dayList(n){const t=dstr(new Date());const o=[];for(let i=n-1;i>=0;i--)o.push(addD(t,-i));return o}
+function span(){
+  if(range!=='all')return range;
+  let first=null;
+  data().forEach(r=>Object.keys(r.data.days||{}).forEach(d=>{if(!first||d<first)first=d}));
+  if(!first)return 30;
+  const n=Math.round((new Date(dstr(new Date())+'T12:00:00')-new Date(first+'T12:00:00'))/864e5)+1;
+  return Math.max(7,Math.min(180,n));
+}
+function sum(list){
+  const o={v:0,l:0,f:0,s:0,uv:new Set(),days:{},pages:{},dev:{mobile:0,desktop:0},nv:0,rv:0};
+  list.forEach(d=>{o.days[d]={v:0,l:0,f:0,s:0}});
+  const inR=new Set(list);
+  data().forEach(r=>{
+    const D=r.data.days||{};let seen=false;
+    list.forEach(d=>{
+      const x=D[d];if(!x)return;
+      const t=o.days[d];
+      t.v+=N(x.v);t.l+=N(x.l);t.f+=N(x.f);t.s+=N(x.s);
+      o.v+=N(x.v);o.l+=N(x.l);o.f+=N(x.f);o.s+=N(x.s);
+      if(N(x.v)>0)seen=true;
+      Object.entries(x.p||{}).forEach(e=>{o.pages[e[0]]=(o.pages[e[0]]||0)+N(e[1])});
+    });
+    if(seen){
+      o.uv.add(r.id);
+      o.dev[r.data.dev==='mobile'?'mobile':'desktop']++;
+      const fd=new Date(r.data.first);
+      if(!isNaN(fd)&&inR.has(dstr(fd)))o.nv++;else o.rv++;
+    }
+  });
+  return o;
+}
+function delta(cur,prev,badUp){
+  if(prev==null)return'<span class="dl">all recorded time</span>';
+  if(!cur&&!prev)return'<span class="dl">no change</span>';
+  if(!prev)return'<span class="dl">new this period</span>';
+  const p=Math.round((cur-prev)/prev*100);
+  if(!p)return'<span class="dl">same as before</span>';
+  const up=p>0,bad=badUp?up:!up;
+  return'<span class="dl '+(bad?'bad':'good')+'">'+(up?'▲ ':'▼ ')+Math.abs(p)+'% vs before</span>';
+}
+function nice(m){
+  if(m<=4)return 4;
+  const p=Math.pow(10,Math.floor(Math.log10(m/4)));
+  for(const f of [1,2,5,10])if(f*p*4>=m)return f*p*4;
+  return m;
+}
+function chart(c,list){
+  const W=720,H=244,L=34,R=12,T=12,B=26,n=list.length,iw=W-L-R,ih=H-T-B;
+  const vals=list.map(d=>c.days[d]);
+  const mx=nice(Math.max(1,...vals.map(x=>Math.max(x.v,x.l))));
+  const X=i=>L+(n>1?i*iw/(n-1):iw/2),Y=v=>T+ih-v/mx*ih;
+  let g='';
+  for(let k=0;k<=4;k++){const v=mx*k/4,y=Y(v);g+='<line class="gr" x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'"/><text x="'+(L-6)+'" y="'+(y+4)+'" text-anchor="end">'+v+'</text>'}
+  const idx=n<=8?list.map((_,i)=>i):[0,1,2,3,4].map(k=>Math.round(k*(n-1)/4));
+  idx.forEach((i,k)=>{const a=idx.length===1?'middle':k===0?'start':k===idx.length-1?'end':'middle';g+='<text x="'+X(i)+'" y="'+(H-7)+'" text-anchor="'+a+'">'+lab(list[i])+'</text>'});
+  const pts=k=>vals.map((x,i)=>X(i).toFixed(1)+','+Y(x[k]).toFixed(1)).join(' ');
+  const area='M'+X(0).toFixed(1)+','+(T+ih)+' L'+pts('v').split(' ').join(' L')+' L'+X(n-1).toFixed(1)+','+(T+ih)+' Z';
+  const last=vals[n-1];
+  const lab2='Visits and sign-ins per day. Total '+c.v+' visits and '+c.l+' sign-ins.';
+  return'<svg class="ch" id="chsvg" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(lab2)+'">'+g+
+    '<path class="ar" d="'+area+'"/><polyline class="lv" points="'+pts('v')+'"/><polyline class="ll" points="'+pts('l')+'"/>'+
+    '<line class="gl" id="gl" y1="'+T+'" y2="'+(T+ih)+'" x1="0" x2="0" visibility="hidden"/>'+
+    '<circle class="ev" cx="'+X(n-1)+'" cy="'+Y(last.v)+'" r="4.5"/><circle class="el" cx="'+X(n-1)+'" cy="'+Y(last.l)+'" r="4.5"/>'+
+    '<rect id="hit" x="'+L+'" y="'+T+'" width="'+iw+'" height="'+ih+'" fill="transparent"/></svg>';
+}
+function readout(list,c,i){
+  const d=list[i],x=c.days[d];
+  return'<b>'+lab(d)+'</b> · '+x.v+' visit'+(x.v===1?'':'s')+' · '+x.l+' sign-in'+(x.l===1?'':'s')+(x.f?' · '+x.f+' failed':'');
+}
+function bars(pages){
+  const e=Object.entries(pages).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  if(!e.length)return'<p class="mut">No section has been opened in this period.</p>';
+  const m=e[0][1];
+  return e.map(x=>'<div class="hb"><span>'+esc(SEC[x[0]]||x[0])+'</span><span class="tr"><i style="width:'+Math.max(3,Math.round(x[1]/m*100))+'%"></i></span><b>'+x[1]+'</b></div>').join('');
+}
+function activity(){
+  const all=[];
+  data().forEach(r=>(Array.isArray(r.data.ev)?r.data.ev:[]).forEach(e=>{if(e&&EVL[e.k])all.push({id:r.id,t:String(e.t||''),k:e.k,d:e.d==='mobile'?'Mobile':'Desktop'})}));
+  all.sort((a,b)=>a.t<b.t?1:a.t>b.t?-1:0);
+  return all.slice(0,30);
+}
+function shell(inner,ctl){
+  const st=sample?'Showing sample data':state==='ok'&&live?'Live':state==='slow'?'Cannot reach the data yet':state==='err'?'Could not load the data':state==='nodb'?'Sign in to Claude to see the data':'Connecting…';
+  const cls=sample?'':state==='ok'&&live?'live':state==='slow'||state==='err'||state==='nodb'?'warn':'';
+  return'<div class="a-wrap"><header class="a-top"><div class="a-brand"><span class="a-kick">Lumora admin</span><h1>How Lumora is being used</h1><span class="a-status"><i class="a-dot '+cls+'"></i>'+st+'</span></div><div class="a-ctl">'+(ctl||'')+'<button class="ghost" data-act="back">Back to Lumora</button></div></header>'+inner+'</div>';
+}
+function render(){
+  if(locked){
+    root.innerHTML=shell('<div class="note"><h2>Admin only</h2><p>Only the owner of this Lumora page, and editors the owner invites, can see these numbers. Sign in to Claude with that account and reload.</p></div>');
+    return;
+  }
+  const n=span(),list=dayList(n),cur=sum(list);
+  const prev=range==='all'?null:sum(dayList(n*2).slice(0,n));
+  const ctl='<div class="seg" role="group" aria-label="Time range">'+[[7,'7 days'],[30,'30 days'],[90,'90 days'],['all','All']].map(r=>'<button data-r="'+r[0]+'" aria-pressed="'+(String(range)===String(r[0]))+'">'+r[1]+'</button>').join('')+'</div>';
+  const empty=!sample&&rows.length===0;
+  const kp=(l,v,pv,bad)=>'<div class="kpi"><span class="a-kick">'+l+'</span><b>'+v+'</b>'+delta(v,pv,bad)+'</div>';
+  const kpis='<section class="kpis" aria-label="Totals">'+kp('Visits',cur.v,prev&&prev.v)+kp('Visitors',cur.uv.size,prev&&prev.uv.size)+kp('Sign-ins',cur.l,prev&&prev.l)+kp('Failed sign-ins',cur.f,prev&&prev.f,true)+kp('New accounts',cur.s,prev&&prev.s)+'</section>';
+  let body='';
+  if(sample)body+='<div class="banner"><span><b>Sample data.</b> These numbers are made up to show the layout.</span><button class="ghost" data-act="real">Show real data</button></div>';
+  if(empty)body+='<div class="panel"><div class="empty"><h2>No activity recorded yet</h2><p>Visits and sign-ins appear here once someone opens Lumora while signed in to Claude with Contributor access or higher. Open Lumora in another tab to record the first visit.</p><button class="ghost" data-act="sample">Preview with sample data</button></div></div>';
+  const tot=cur.l+cur.f,rate=tot?Math.round(cur.l/tot*100):null;
+  const dv=cur.dev.mobile+cur.dev.desktop,mp=dv?Math.round(cur.dev.mobile/dv*100):0;
+  const nr=cur.nv+cur.rv,np=nr?Math.round(cur.nv/nr*100):0;
+  body+=kpis;
+  body+='<section class="panel"><div class="head"><h2>Visits and sign-ins per day</h2><div class="key"><span><i style="background:var(--a-plum)"></i>Visits</span><span><i style="background:var(--a-sage)"></i>Sign-ins</span></div></div>'+chart(cur,list)+'<div class="ro" id="ro">'+readout(list,cur,list.length-1)+'</div></section>';
+  body+='<div class="trio">'+
+    '<section class="panel"><h2>Sign-in health</h2><span class="big">'+(rate==null?'–':rate+'%')+'</span><div class="split" aria-hidden="true"><i style="width:'+(tot?cur.l/tot*100:0)+'%;background:var(--a-sage)"></i><i style="width:'+(tot?cur.f/tot*100:0)+'%;background:var(--a-rose)"></i></div><div class="lgd"><span>Succeeded <b>'+cur.l+'</b></span><span>Failed <b>'+cur.f+'</b></span><span>New accounts <b>'+cur.s+'</b></span></div></section>'+
+    '<section class="panel"><h2>Where people go</h2>'+bars(cur.pages)+'</section>'+
+    '<section class="panel"><h2>Who visits</h2><div class="split" aria-hidden="true"><i style="width:'+mp+'%;background:var(--a-plum)"></i></div><div class="lgd"><span>Phone <b>'+mp+'%</b></span><span>Computer <b>'+(dv?100-mp:0)+'%</b></span></div><div class="split" aria-hidden="true"><i style="width:'+np+'%;background:var(--a-sage)"></i></div><div class="lgd"><span>New <b>'+cur.nv+'</b></span><span>Returning <b>'+cur.rv+'</b></span></div></section>'+
+  '</div>';
+  const act=activity();
+  body+='<section class="panel"><h2>Recent activity</h2>'+(act.length?'<div class="tw"><table><thead><tr><th>When</th><th>Event</th><th>Visitor</th><th>Device</th></tr></thead><tbody>'+act.map(a=>'<tr><td title="'+esc(when(a.t))+'">'+esc(ago(a.t))+' <span class="mut">'+esc(when(a.t))+'</span></td><td><span class="tag t-'+a.k+'"><i></i>'+EVL[a.k]+'</span></td><td class="mut">'+esc(short(a.id))+'</td><td>'+a.d+'</td></tr>').join('')+'</tbody></table></div>':'<p class="mut">Nothing recorded yet.</p>')+'</section>';
+  const vs=data().slice().sort((a,b)=>String(b.data.last||'')<String(a.data.last||'')?-1:1).slice(0,20);
+  body+='<section class="panel"><h2>Visitors</h2>'+(vs.length?'<div class="tw"><table><thead><tr><th>Visitor</th><th>First seen</th><th>Last seen</th><th class="n">Visits</th><th class="n">Sign-ins</th><th class="n">Failed</th></tr></thead><tbody>'+vs.map(r=>{
+    let v=0,l=0,f=0;Object.values(r.data.days||{}).forEach(x=>{v+=N(x.v);l+=N(x.l);f+=N(x.f)});
+    return'<tr><td class="mut">'+esc(short(r.id))+'</td><td>'+esc(when(r.data.first))+'</td><td>'+esc(when(r.data.last))+'</td><td class="n">'+v+'</td><td class="n">'+l+'</td><td class="n">'+f+'</td></tr>';
+  }).join('')+'</tbody></table></div>':'<p class="mut">No visitors yet.</p>')+'<p class="mut">Visitors are anonymous. Only a short random ID is stored, never a name or email.</p></section>';
+  root.innerHTML=shell(body,ctl);
+  wire(list,cur);
+}
+function wire(list,cur){
+  const svg=document.getElementById('chsvg'),gl=document.getElementById('gl'),ro=document.getElementById('ro');
+  if(!svg||!ro||list.length<2)return;
+  const W=720,L=34,R=12,iw=W-L-R,n=list.length,def=ro.innerHTML;
+  const at=e=>{const r=svg.getBoundingClientRect();const x=(e.clientX-r.left)/r.width*W;return Math.max(0,Math.min(n-1,Math.round((x-L)/(iw/(n-1)))))};
+  svg.addEventListener('pointermove',e=>{const i=at(e),x=L+i*iw/(n-1);gl.setAttribute('x1',x);gl.setAttribute('x2',x);gl.setAttribute('visibility','visible');ro.innerHTML=readout(list,cur,i)});
+  svg.addEventListener('pointerleave',()=>{gl.setAttribute('visibility','hidden');ro.innerHTML=def});
+}
+root.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.r){range=b.dataset.r==='all'?'all':+b.dataset.r;render();return}
+  const a=b.dataset.act;
+  if(a==='back')location.hash='';
+  else if(a==='sample'){sample=true;render()}
+  else if(a==='real'){sample=false;render()}
+});
+async function start(){
+  if(started)return;
+  started=true;render();
+  try{
+    if(!window.claude)throw 0;
+    const[db,user]=await Promise.all([claude.use('db'),claude.use('user')]);
+    if(user){
+      const ok=(typeof user.isOwner==='function'&&user.isOwner())||(typeof user.canEdit==='function'&&user.canEdit());
+      if(!ok){locked=true;render();return}
+    }
+    if(!db){state='nodb';render();return}
+    timerId=setTimeout(()=>{if(!live){state='slow';render()}},10000);
+    db.collection('visitors').onSnapshot(s=>{
+      if(!s.metadata.fromCache){live=true;clearTimeout(timerId)}
+      rows=s.docs.map(d=>({id:d.id,data:d.data()||{}}));
+      state='ok';render();
+    },()=>{state='err';render()});
+  }catch(e){state='nodb';render()}
+}
+function route(){
+  const on=location.hash==='#admin';
+  app.hidden=on;root.hidden=!on;
+  if(on){start();scrollTo(0,0)}
+}
+addEventListener('hashchange',route);
+route();
+})();
+</script>
+
+</body></html>
